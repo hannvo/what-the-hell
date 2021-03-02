@@ -1,5 +1,9 @@
-.container-new-search {
+.background-gradient {
   background: linear-gradient($purple 32.01%, $yellow 65.72%);
+  height: 100vh;
+}
+
+.container-new-search {
   height: 100vh;
   display: flex;
   flex-direction: column;
@@ -11,10 +15,11 @@
     color: $light-yellow;
     text-shadow: 4px 5px 4px rgba(245, 103, 42, 0.6);
     transform: rotate(-12deg);
-    padding: 40px 0 25px 32px;
+    padding: 40px 0 25px 0;
+    align-self: center;
   }
   p {
     font-size: 24px;
-    padding-bottom: 24px;
+    padding-bottom: 10%;
   }
 }
