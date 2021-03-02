@@ -10,14 +10,21 @@ class SearchesController < ApplicationController
     @result = Result.new
     @search.result = @result
     @search.user = current_user if user_signed_in?
-    @search.save ? (redirect_to result_path(@result)) : (render :new)
+    @search.save ? (redirect_to search_preresults_path(@search)) : (render :new)
   end
 
   def show
-    @result = Result.find(params[:id])
+    @search = Search.find(params[:id])
   end
 
-  def display_result
+  def second_search
+    # search result are processed here
+    @search = Search.find(params[:id])
+    redirect_to search_results_path(@search)
+  end
+
+  def final_results
+    @search = Search.find(params[:id])
   end
 
   private
