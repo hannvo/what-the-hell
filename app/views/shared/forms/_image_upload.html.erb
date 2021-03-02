@@ -1,6 +1,6 @@
 <div id="photo-upload">
-    <%= simple_form_for(@search) do |f| %>
-        <%= f.input :photo, as: :file, label: false %>
-        <%= f.submit %>
+    <%= simple_form_for(@search, remote: true) do |f| %>
+        <%= f.input :photo, as: :file, label: false, input_html: { class: "hidden-image-input" } %>
+        <%= f.label :photo, icon("fas", "camera", class: "icon-img-upload") %>
     <% end %>
 </div>
