@@ -1,5 +1,18 @@
-<%= simple_form_for @search do |f| %>
-    <%= f.input :query, label: false, placeholder: 'Type a movie' %>
-<% end %>
+<div class="background-gradient">
+  <div class="container container-new-search">
+    <h1>
+      WHAT THE HELL<br>
+      IS THIS ACTOR'S<br>
+      NAME???
+    </h1>
 
-<%= render 'shared/forms/image_upload' %>
+    <div>
+      <%= render 'shared/forms/movie_input' %>
+      <%= render 'shared/forms/image_upload' %>
+    </div>
+
+    <p>
+      Give us a movie they played in or a picture and we will tell you!
+    </p>
+  </div>
+</div>
