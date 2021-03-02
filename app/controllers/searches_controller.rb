@@ -13,6 +13,13 @@ class SearchesController < ApplicationController
     @search.save ? (redirect_to result_path(@result)) : (render :new)
   end
 
+  def show
+    @result = Result.find(params[:id])
+  end
+
+  def display_result
+  end
+
   private
 
   def search_params

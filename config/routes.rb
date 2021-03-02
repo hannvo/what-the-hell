@@ -3,4 +3,5 @@ Rails.application.routes.draw do
   root to: "searches#new"
 
   resources :searches, only: [:create]
+  resources :results, only: [:show]
 end
