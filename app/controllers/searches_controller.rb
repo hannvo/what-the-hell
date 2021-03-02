@@ -18,5 +18,4 @@ class SearchesController < ApplicationController
   def search_params
     params.require(:search).permit(:query, :user, :result, :photo)
   end
-  
 end
