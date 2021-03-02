@@ -1,5 +1,6 @@
-<%= simple_form_for @search do |f| %>
-    <%= f.input :query, label: false, placeholder: 'Type a movie' %>
-<% end %>
+<div class="container">
 
-<%= render 'shared/forms/image_upload' %>
+  <%= render 'shared/forms/movie_input' %>
+  <%= render 'shared/forms/image_upload' %>
+</div>
+
