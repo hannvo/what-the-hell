@@ -1,7 +1,10 @@
+<% # change button icon here %>
+<% btn_img_upload = icon("fas", "camera", class: "icon-img-upload") %>
+
 <div id="photo-upload" data-controller="img-upload">
     <%= simple_form_for(@search, remote: true) do |f| %>
         <%= f.input :photo, as: :file, label: false, input_html: { class: "hidden-image-input", data: { action: "img-upload#update" }, "data-img-upload-target": "image" } %>
         <%= f.button :submit, class: "hidden-image-input", "data-img-upload-target": "submit"  %>
-        <%= f.label :photo, icon("fas", "camera", class: "icon-img-upload") %>
+        <%= f.label :photo, btn_img_upload %>
     <% end %>
 </div>
