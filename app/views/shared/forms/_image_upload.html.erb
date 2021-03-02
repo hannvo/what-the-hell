@@ -1,4 +1,6 @@
-<%= simple_form_for(@search) do |f| %>
-    <%= f.input :photo, as: :file, label: false %>
-    <%= f.submit %>
-<% end %>
+<div id="photo-upload">
+    <%= simple_form_for(@search) do |f| %>
+        <%= f.input :photo, as: :file, label: false %>
+        <%= f.submit %>
+    <% end %>
+</div>
