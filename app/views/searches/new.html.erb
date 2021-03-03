@@ -1,12 +1,15 @@
-<div class="background-gradient">
-  <div class="container container-new-search">
-    <%= render 'shared/text/main_title' %>
+<div class="container">
+  <% if @query.any? %>
+    <!-- if there already has been movie input -->
+    <%= render 'shared/movie_cards' %>
 
-    <div>
-      <%= render 'shared/forms/movie_input' %>
-      <%= render 'shared/forms/image_upload' %>
-    </div>
+    <%= render 'shared/forms/movie_input' %>
 
-    <%= render 'shared/text/subtitle' %>
-  </div>
+    <%= render 'shared/cast_cards' %>
+
+  <% else %>
+    <!-- for first time on the searches new page -->
+    <%= render 'shared/forms/movie_input' %>
+  <% end %>
+
 </div>
