@@ -1,0 +1,20 @@
+.movie-card {
+  display: flex;
+  justify-content: space-around;
+  flex-direction: row;
+  border: 1px solid rgb(63, 42, 2);
+  width: 350px;
+  opacity: 0.6;
+  background-color: #ffffff;
+  margin-bottom: 36px;
+}
+
+.movie-card {
+  img {
+    width: 50px;
+  }
+}
+
+.movie-card__title {
+  margin-top: 22px;
+}

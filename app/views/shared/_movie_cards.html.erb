@@ -1,8 +1,8 @@
-<div>
+
   <% @query.each do |movie| %>
     <div>
       <p>movie name: <%= movie %> </p>
-      <p>here we have to design a movie card</p>
+      <%= render "shared/movie_card" %>
     </div>
   <% end %>
-</div>
+
