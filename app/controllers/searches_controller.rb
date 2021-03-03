@@ -6,7 +6,7 @@ class SearchesController < ApplicationController
   end
 
   def create
-    query = params[:queries] ? "#{params[:queries]} #{params[:search][:query]}" : params[:search][:query]
+    query = params[:queries].present? ? "#{params[:queries]}&#{params[:search][:query]}" : params[:search][:query]
     @search = Search.new(query: query)
     @search.user = current_user if user_signed_in?
     if @search.save
@@ -22,7 +22,7 @@ class SearchesController < ApplicationController
     if params[:search][:photo]
       search_params
     else
-      { search: { queries: params[:search][:query] + (params[:queries] || "") } }
+      { search: { queries: ("#{params[:queries]}&" || "") + params[:search][:query] } }
     end
   end
 
@@ -41,7 +41,7 @@ class SearchesController < ApplicationController
   end
 
   def set_vars_from_params
-    @query = "&" + user_params[:search][:queries].strip
+    @query = user_params[:search][:queries].strip.split('&')
     @results = search_results(full_query)
   end
 

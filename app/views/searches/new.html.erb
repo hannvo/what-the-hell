@@ -1,15 +1,23 @@
-<div class="container">
-  <% if @query.any? %>
-    <!-- if there already has been movie input -->
-    <%= render 'shared/movie_cards' %>
+<div class="background-gradient">
+    <div class="container container-home-page">
+        <% if @query.empty? %>
+            <!-- if there isn't any search in the parameters -->
+            <%= render 'shared/main_title' %>
+            <%= render 'shared/forms/movie_input' %>
+            <%= render 'shared/forms/image_upload' %>
 
-    <%= render 'shared/forms/movie_input' %>
+            <p class="tag-line">
+                Give us a movie they played in or a picture and we will tell you!
+            </p>
 
-    <%= render 'shared/cast_cards' %>
+        <% else %>
+            <!-- if there already has been movie input -->
+            <%= render 'shared/movie_cards' %>
 
-  <% else %>
-    <!-- for first time on the searches new page -->
-    <%= render 'shared/forms/movie_input' %>
-  <% end %>
+            <%= render 'shared/forms/movie_input' %>
 
+            <%= render 'shared/cast_cards' %>
+        <% end %>
+
+    </div>
 </div>

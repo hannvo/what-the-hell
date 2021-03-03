@@ -1,14 +1,23 @@
 <div class="background-gradient">
-  <div class="container container-home-page">
-    <%= render 'shared/main_title' %>
+    <div class="container container-home-page">
+        <% if @query.empty? %>
+            <!-- if there isn't any search in the parameters -->
+            <%= render 'shared/main_title' %>
+            <%= render 'shared/forms/movie_input' %>
+            <%= render 'shared/forms/image_upload' %>
 
-    <div>
-      <%= render 'shared/forms/movie_input' %>
-      <%= render 'shared/forms/image_upload' %>
+            <p class="tag-line">
+                Give us a movie they played in or a picture and we will tell you!
+            </p>
+
+        <% else %>
+            <!-- if there already has been movie input -->
+            <%= render 'shared/movie_cards' %>
+
+            <%= render 'shared/forms/movie_input' %>
+
+            <%= render 'shared/cast_cards' %>
+        <% end %>
+
     </div>
-
-    <p class="tag-line">
-      Give us a movie they played in or a picture and we will tell you!
-    </p>
-  </div>
 </div>
