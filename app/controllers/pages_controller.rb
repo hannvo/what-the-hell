@@ -5,27 +5,7 @@ class PagesController < ApplicationController
     set_instance_vars
   end
 
-  def create
-    query = params[:queries] ? "#{params[:queries]} #{params[:search][:query]}" : params[:search][:query]
-    @search = Search.new(query: query)
-    @search.user = current_user if user_signed_in?
-    raise
-    if @search.save
-      redirect_to root_path(construct_query)
-    else
-      render :new
-    end
-  end
-
   private
-
-  def construct_query
-    if params[:search][:photo]
-      search_params
-    else
-      { search: { queries: params[:search][:query] + (params[:queries] || "") } }
-    end
-  end
 
   def user_params
     params.except(:controller, :action)
@@ -56,9 +36,5 @@ class PagesController < ApplicationController
   def search_results(query)
     search = Search.find_by(query: query) || Search.create(query: query)
     JSON.parse(search.result.json)
-  end
-
-  def search_params
-    params.require(:search).permit(:query, :photo)
   end
 end
