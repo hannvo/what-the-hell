@@ -1,2 +1,14 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
+<div class="background-gradient">
+  <div class="container container-home-page">
+    <%= render 'shared/main_title' %>
+
+    <div>
+      <%= render 'shared/forms/movie_input' %>
+      <%= render 'shared/forms/image_upload' %>
+    </div>
+
+    <p class="tag-line">
+      Give us a movie they played in or a picture and we will tell you!
+    </p>
+  </div>
+</div>
