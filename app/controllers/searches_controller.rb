@@ -2,7 +2,10 @@ class SearchesController < ApplicationController
   skip_before_action :authenticate_user!
 
   def new
-    @search = Search.new
+    @search = Search.new(query: params[:query]) || Search.new
+    @query = []
+    @query << params[:query]
+    @results = ["actor1", "actor2"]
   end
 
   def create
@@ -10,7 +13,7 @@ class SearchesController < ApplicationController
     @result = Result.new
     @search.result = @result
     @search.user = current_user if user_signed_in?
-    @search.save ? (redirect_to result_path(@result)) : (render :new)
+    @search.save ? (redirect_to new_search_path(query: @search.query)) : (render :new)
   end
 
   private
