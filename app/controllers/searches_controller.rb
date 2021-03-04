@@ -50,7 +50,7 @@ class SearchesController < ApplicationController
   end
 
   def set_vars_from_params
-    @query = user_params[:search][:queries].strip.split('&')
+    @query = user_params[:search][:queries].strip.split("&")
     @results = search_results(params[:search][:queries])
   end
 
@@ -58,7 +58,7 @@ class SearchesController < ApplicationController
     user_params
       .as_json
       .map { |key, _value| params[key] }
-      .join('&')
+      .join("&")
   end
 
   def search_results(query)

@@ -13,6 +13,7 @@
 .actor-card-img {
   border-radius: 25px;
   border: 2px solid white;
+  width: 100%;
 }
 
 .actor-card-title {
@@ -28,13 +29,13 @@
   position: relative;
 }
 
-@media(max-width: 768px) {
+@media (max-width: 768px) {
   .actor-card-title {
     font-size: 20px;
   }
 }
 
-@media(min-width: 1200px) {
+@media (min-width: 1200px) {
   .actor-card-title {
     font-size: 75px;
   }
