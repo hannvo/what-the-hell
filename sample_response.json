@@ -1,0 +1,25 @@
+{
+  "queries": {
+    "q1": {
+      "type": "movie",
+      "title": "Anchorman",
+      "year": 2099,
+      "thumb": "http://pic-url.com",
+      "id": 999
+    }
+  },
+  "results": {
+    "r1": {
+      "type": "actor",
+      "name": "Will Ferrell",
+      "dob": 1846,
+      "thumb": "http://another-pic-url.com"
+    },
+    "r2": {
+      "type": "actor",
+      "name": "Steve Carell",
+      "dob": 1846,
+      "thumb": "http://another-pic-url.com"
+    }
+  }
+}
