@@ -1,7 +1,7 @@
 class SearchesController < ApplicationController
   skip_before_action :authenticate_user!
 
-  def new
+  def home
     set_instance_vars
   end
 
@@ -12,7 +12,7 @@ class SearchesController < ApplicationController
     if @search.save
       redirect_to root_path(construct_query)
     else
-      render :new
+      render :home
     end
   end
 
@@ -22,7 +22,8 @@ class SearchesController < ApplicationController
     if params[:search][:photo]
       search_params
     else
-      { search: { queries: ("#{params[:queries]}&" || "") + params[:search][:query] } }
+      previous_queries = params[:queries].present? ? "#{params[:queries]}&" : ""
+      { search: { queries: previous_queries + params[:search][:query] } }
     end
   end
 
@@ -42,7 +43,7 @@ class SearchesController < ApplicationController
 
   def set_vars_from_params
     @query = user_params[:search][:queries].strip.split('&')
-    @results = search_results(full_query)
+    @results = search_results(params[:search][:queries])
   end
 
   def full_query
