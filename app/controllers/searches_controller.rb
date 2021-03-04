@@ -21,7 +21,7 @@ class SearchesController < ApplicationController
   def get_actors
     tmdb = Tmdb.new(ENV["TMDB_KEY"])
     result = tmdb.get_actors(params[:movie_id])
-    render json: result
+    render json: result[0..3]
   end
 
   private
