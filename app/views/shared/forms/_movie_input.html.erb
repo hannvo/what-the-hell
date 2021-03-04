@@ -1,3 +1,7 @@
 <%= simple_form_for @search, url: searches_path(queries: @query.join('&')) do |f| %>
     <%= f.input :query, label: false, placeholder: 'Type a movie' %>
 <% end %>
+
+<div id="movie-suggestions"
+     data-tmdb-api-key="<%= ENV['TMDB_KEY'] %>">
+</div>
