@@ -8,6 +8,6 @@ class Search < ApplicationRecord
   private
 
   def async_update
-    CallApiJob.perform_later(self)
+    CallApiJob.perform_later(self.id)
   end
 end
