@@ -1,3 +1,5 @@
+require_relative "../services/tmdb.rb"
+
 class SearchesController < ApplicationController
   skip_before_action :authenticate_user!
 
@@ -14,6 +16,12 @@ class SearchesController < ApplicationController
     else
       render :home
     end
+  end
+
+  def get_actors
+    tmdb = Tmdb.new(ENV["TMDB_KEY"])
+    result = tmdb.get_actors(params[:movie_id])
+    render json: result
   end
 
   private
