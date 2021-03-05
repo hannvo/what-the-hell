@@ -1,6 +1,5 @@
 import confetti from "canvas-confetti";
 import { Controller } from "stimulus";
-require("canvas-confetti");
 
 export default class extends Controller {
   static targets = ["name", "details"];
