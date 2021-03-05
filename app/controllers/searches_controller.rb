@@ -4,7 +4,7 @@ class SearchesController < ApplicationController
   skip_before_action :authenticate_user!
 
   def home
-    set_instance_vars
+    user_params[:photo] ? photo_upload_handler : set_instance_vars
   end
 
   def create
@@ -26,6 +26,11 @@ class SearchesController < ApplicationController
 
   private
 
+  def photo_upload_handler
+    @search = Search.new(query: "Julia Roberts")
+    @search.save ? (redirect_to result_path(@search.result)) : (redirect_to root_path)
+  end
+
   def construct_query
     if params[:search][:photo]
       search_params
@@ -40,7 +45,7 @@ class SearchesController < ApplicationController
   end
 
   def set_instance_vars
-    user_params.empty? || user_params[:photo] ? no_params : set_vars_from_params
+    user_params.empty? ? no_params : set_vars_from_params
     @search = Search.new
   end
 

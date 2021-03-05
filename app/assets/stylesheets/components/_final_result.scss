@@ -24,3 +24,9 @@
 .result-content {
   height: 100vh;
 }
+
+.actor-details {
+  position: fixed;
+  top: 140px;
+  z-index: -1;
+}

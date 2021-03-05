@@ -17,4 +17,10 @@ class Tmdb
       a["popularity"] - b["popularity"]
     end
   end
+
+  def get_actor_details(actor_id)
+    # takes an actor ID and returns the JSON response
+    url = "https://api.themoviedb.org/3/person/#{actor_id}?api_key=#{@api_key}&language=en-US&include_adult=false"
+    URI.parse(url).read
+  end
 end
