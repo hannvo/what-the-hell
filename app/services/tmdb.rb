@@ -9,6 +9,12 @@ class Tmdb
     url = "https://api.themoviedb.org/3/movie/#{movie_id}/credits?api_key=#{@api_key}&language=en-US"
 
     response = open(url).read
-    JSON.parse(response)
+    actors = JSON.parse(response)["cast"]
+    filtered = actors.select do |actor|
+      actor["known_for_department"] == "Acting"
+    end
+    filtered.sort do |b, a|
+      a["popularity"] - b["popularity"]
+    end
   end
 end

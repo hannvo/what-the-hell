@@ -21,7 +21,7 @@ class SearchesController < ApplicationController
   def get_actors
     tmdb = Tmdb.new(ENV["TMDB_KEY"])
     result = tmdb.get_actors(params[:movie_id])
-    render json: result
+    render json: result[0..3]
   end
 
   private
@@ -50,7 +50,7 @@ class SearchesController < ApplicationController
   end
 
   def set_vars_from_params
-    @query = user_params[:search][:queries].strip.split('&')
+    @query = user_params[:search][:queries].strip.split("&")
     @results = search_results(params[:search][:queries])
   end
 
@@ -58,7 +58,7 @@ class SearchesController < ApplicationController
     user_params
       .as_json
       .map { |key, _value| params[key] }
-      .join('&')
+      .join("&")
   end
 
   def search_results(query)

@@ -1,0 +1,42 @@
+.actor-card-container {
+  display: flex;
+  justify-content: space-around;
+}
+
+.actor-cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 20px;
+  position: relative;
+}
+
+.actor-card-img {
+  border-radius: 25px;
+  border: 2px solid white;
+  width: 100%;
+}
+
+.actor-card-title {
+  position: absolute;
+  bottom: 8px;
+  left: 20px;
+  color: white;
+  font-size: 45px;
+  text-shadow: 0.02em 0 black, 0 0.02em black;
+}
+
+.actor-card-category {
+  position: relative;
+}
+
+@media (max-width: 768px) {
+  .actor-card-title {
+    font-size: 20px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .actor-card-title {
+    font-size: 75px;
+  }
+}
