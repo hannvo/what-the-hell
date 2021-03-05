@@ -1,7 +1,17 @@
+import confetti from "canvas-confetti";
 import { Controller } from "stimulus";
+require("canvas-confetti");
 
 export default class extends Controller {
   static targets = ["name", "details"];
+
+  connect() {
+    confetti({
+      particleCount: 100,
+      spread: 70,
+      origin: { y: 0.6 },
+    });
+  }
 
   fixName() {
     if (window.scrollY > 580) {
