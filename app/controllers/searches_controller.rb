@@ -55,7 +55,7 @@ class SearchesController < ApplicationController
     # @query [ "123" ] is an array stores the ids we need to use to call the api
     # @results = search_results(params[:search][:queries])
     tmdb = Tmdb.new(ENV["TMDB_KEY"])
-    @results = tmdb.get_actors(@query.flatten.first.to_i)
+    @results = tmdb.get_actors_and_movie(@query.last.to_i)
   end
 
   def full_query

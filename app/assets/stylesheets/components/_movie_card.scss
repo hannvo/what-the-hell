@@ -1,21 +1,17 @@
 .movie-card {
   display: flex;
-  justify-content: space-around;
-  flex-direction: row;
-  border: 1px solid rgb(63, 42, 2);
-  width: 100%;
-  opacity: 0.6;
-  background-color: #ffffff;
-  margin-bottom: 36px;
-  padding: 2px;
-}
-
-.movie-card {
+  align-items: center;
+  background-color: rgba(255, 255, 255, 0.6);
+  padding: 4px;
+  margin-bottom: 4px;
   img {
-    width: 45px;
+    width: 40px;
+    height: 60px;
+    object-fit: cover;
   }
-}
-
-.movie-card__title {
-  margin-top: 20px;
+  p {
+    margin: 0;
+    padding-left: 12px;
+    font-size: 20px;
+  }
 }
