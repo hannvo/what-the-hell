@@ -1,7 +1,7 @@
 <div class="scroll-container" data-controller="results">
     <%= render 'shared/cards/final_result_card' %>
     <div class="container result-content">
-    
+
         <div class="actor-name" data-results-target="name" data-action="scroll@window->results#fixName">
             <h1>
                 <%= @result["name"] %>
@@ -14,4 +14,5 @@
             <p>Born: <%= @result["birthday"] %> in <%= @result["place_of_birth"] %></p>
         </div>
     </div>
+    <%= link_to "Back", root_path, class: "btn btn-primary m-5" %>
 </div>
