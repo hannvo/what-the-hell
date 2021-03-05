@@ -1,8 +1,9 @@
-
-  <% @query.each do |movie| %>
-    <div>
-            <%= render "shared/movie_card" %>
-    </div>
-  <% end %>
-  <%= @id %>
-
+<div class="movie-card">
+  <div class="movie-card__poster" >
+    <% img_url = "https://image.tmdb.org/t/p/w200/#{@results[:movie][:img_path]}" %>
+    <img src=<%= img_url %> >
+  </div>
+  <p class="movie-card__title">
+    <%= @results[:movie][:title] %>
+  </p>
+</div>
