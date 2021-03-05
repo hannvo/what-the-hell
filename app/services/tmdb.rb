@@ -13,8 +13,21 @@ class Tmdb
     filtered = actors.select do |actor|
       actor["known_for_department"] == "Acting"
     end
-    filtered.sort do |b, a|
+    top_actors = filtered.sort do |b, a|
       a["popularity"] - b["popularity"]
     end
+
+    results = { cast: {},
+                movie: {}
+              }
+
+    top_actors.first(4).each_with_index do |actor, index|
+      results[:cast]["actor#{index+1}".to_sym] = actor
+    end
+
+    results
+    # @results = { movie: {title: "asda", img: "asdas", date: "1234"},
+    #            cast: { actor1: {json.parse}, actor2: {}}
+    # }
   end
 end
