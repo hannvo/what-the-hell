@@ -2,7 +2,8 @@ class CallApiJob < ApplicationJob
   queue_as :default
 
   def perform(search_id)
-    # call API to fetch results for this search
-    puts "called successfully"
+    search = Search.find(search_id)
+    result_json = Tmdb.new(ENV["TMDB_KEY"]).get_actor_details('1204')
+    search.update(result: Result.create(json: result_json))
   end
 end

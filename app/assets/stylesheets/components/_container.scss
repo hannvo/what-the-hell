@@ -1,3 +1,26 @@
 .container {
   padding: 32px;
 }
+
+.scroll-container {
+  overflow-y: scroll; /* can be auto or scroll */
+  -webkit-overflow-scrolling: touch; /* adds momentum scrolling for iOS*/
+  height: 200vh;
+  scroll-snap-type: mandatory;
+}
+
+.vertical-paging-container {
+  scroll-snap-type: y proximity;
+  /* Reserve space for header plus some extra space for sneak peeking. */
+  scroll-padding-top: 15vh;
+  overflow-y: scroll;
+}
+
+.vertical-paging-section {
+  scroll-snap-align: start;
+}
+
+.vertical-paging-header {
+  position: fixed;
+  height: 10vh;
+}

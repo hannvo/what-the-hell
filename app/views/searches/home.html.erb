@@ -1,8 +1,8 @@
 <div class="background-gradient">
-    <div class="container container-home-page">
+    <div class="container container-home-page scroll-container">
         <% if @query.empty? %>
             <!-- if there isn't any search in the parameters -->
-            <%= render 'shared/main_title' %>
+            <%= render 'shared/text/main_title' %>
             <%= render 'shared/forms/movie_input' %>
             <%= render 'shared/forms/image_upload' %>
 
@@ -12,11 +12,11 @@
 
         <% else %>
             <!-- if there already has been movie input -->
-            <%= render 'shared/movie_cards' %>
+            <%= render 'shared/cards/movie_cards' %>
 
             <%= render 'shared/forms/movie_input' %>
 
-            <%= render 'shared/cast_cards' %>
+            <%= render 'shared/cards/cast_cards' %>
         <% end %>
 
     </div>
