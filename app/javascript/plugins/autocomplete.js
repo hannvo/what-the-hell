@@ -44,6 +44,8 @@ const initAutocomplete = () => {
   const movieInput = document.getElementById("search_query");
   const movieSuggestions = document.getElementById("movie-suggestions");
 
+  // added check for the presence of the element to suppress
+  // errors on views without the movie input
   if (movieInput) {
     movieInput.addEventListener("keyup", (event) => {
       movieSuggestions.innerHTML = "";

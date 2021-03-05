@@ -27,6 +27,8 @@ class SearchesController < ApplicationController
   private
 
   def photo_upload_handler
+    # for now, pretend any submitted image is Julia Roberts and
+    # redirect to the result page for that search
     @search = Search.new(query: "Julia Roberts")
     @search.save ? (redirect_to result_path(@search.result)) : (redirect_to root_path)
   end
