@@ -2,8 +2,8 @@ class Search < ApplicationRecord
   belongs_to :user, optional: true
   belongs_to :result, optional: true
   has_one_attached :photo
-  before_validation :fake_results
-  after_commit :async_update
+  before_create :julia_roberts
+  # after_commit :async_update
 
   private
 
@@ -15,6 +15,13 @@ class Search < ApplicationRecord
       db_id: 1123
     }.to_json
     self.result = Result.new(json: fake_json)
+  end
+
+  def julia_roberts
+    # creates a result for the current search with JR's details
+    # fetched from TMDB
+    result_json = Tmdb.new(ENV["TMDB_KEY"]).get_actor_details('1204')
+    self.result = Result.create(json: result_json)
   end
 
   def async_update

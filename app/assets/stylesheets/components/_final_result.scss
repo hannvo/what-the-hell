@@ -1,0 +1,33 @@
+.final-result-card {
+  background-position: center;
+  background-size: cover;
+  height: 100vh;
+  width: 100%;
+  /* position: fixed;
+  top: 0;
+  z-index: -1; */
+}
+
+.actor-name {
+  color: $light-gray;
+  font-weight: bold;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+  position: absolute;
+  bottom: 80px;
+}
+
+.fixed-name {
+  position: fixed;
+  top: 24px;
+}
+
+.result-content {
+  height: 100vh;
+  scroll-snap-align: center;
+}
+
+.actor-details {
+  position: fixed;
+  top: 140px;
+  z-index: -1;
+}
