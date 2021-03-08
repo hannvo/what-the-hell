@@ -28,10 +28,6 @@ class Tmdb
     array_of_movie_ids.each do |movie_id|
       movie_url = "https://api.themoviedb.org/3/movie/#{movie_id.to_i}?api_key=#{@api_key}&language=en-US"
 
-<<<<<<< HEAD
-    movie_response = URI.parse(movie_url).read
-    JSON.parse(movie_response)
-=======
       movie_response = URI.parse(movie_url).read
       movie_details = JSON.parse(movie_response)
 
@@ -43,7 +39,6 @@ class Tmdb
     end
     # returns array of hashes with movie details
     movies
->>>>>>> master
   end
 
   def get_actor_details(actor_id)

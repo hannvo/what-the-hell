@@ -1,4 +1,4 @@
-<%= link_to(result_path(Result.last)) do %>
+<%= link_to(result_path(Result.create(json: actor["id"]))) do %>
   <div class="actor-card-category">
 
     <% if actor['profile_path'] %>
