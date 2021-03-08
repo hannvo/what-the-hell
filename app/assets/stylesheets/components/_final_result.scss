@@ -1,8 +1,16 @@
+.final-result-card-container {
+  border-radius: 25px;
+  border: 3px solid white;
+  width: 90%;
+  margin: 20px;
+}
+
 .final-result-card {
   background-position: center;
   background-size: cover;
-  height: 100vh;
+  height: 94vh;
   width: 100%;
+  border-radius: 25px;
   /* position: fixed;
   top: 0;
   z-index: -1; */
@@ -11,9 +19,10 @@
 .actor-name {
   color: $light-gray;
   font-weight: bold;
-  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+  text-shadow: 0.02em 0 black, 0 0.02em black;
   position: absolute;
-  bottom: 80px;
+  bottom: 50px;
+  left: 42px;
 }
 
 .fixed-name {
