@@ -27,7 +27,6 @@ class Tmdb
     movies = []
     array_of_movie_ids.each do |movie_id|
       movie_url = "https://api.themoviedb.org/3/movie/#{movie_id.to_i}?api_key=#{@api_key}&language=en-US"
-
       movie_response = URI.parse(movie_url).read
       movie_details = JSON.parse(movie_response)
 
