@@ -43,4 +43,10 @@ class Tmdb
     url = "https://api.themoviedb.org/3/person/#{actor_id}?api_key=#{@api_key}&language=en-US&include_adult=false"
     URI.parse(url).read
   end
+
+  def self.search_actor_name(query)
+    query = URI.encode(query)
+    url = "https://api.themoviedb.org/3/search/person?api_key=#{@api_key}&language=en-US&query=#{query}&page=1&include_adult=false"
+    URI.parse(url).read
+  end
 end
