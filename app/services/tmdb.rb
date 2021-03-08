@@ -1,11 +1,9 @@
 require "open-uri"
 
 class Tmdb
-  def initialize(api_key)
-    @api_key = api_key
-  end
+  @api_key = ENV['TMDB_KEY']
 
-  def get_actors(movie_id)
+  def self.get_actors(movie_id)
     actors_url = "https://api.themoviedb.org/3/movie/#{movie_id}/credits?api_key=#{@api_key}&language=en-US"
 
     actors_response = URI.parse(actors_url).read
@@ -23,7 +21,7 @@ class Tmdb
     cast
   end
 
-  def get_movie_details(array_of_movie_ids)
+  def self.get_movie_details(array_of_movie_ids)
     movies = []
     array_of_movie_ids.each do |movie_id|
       movie_url = "https://api.themoviedb.org/3/movie/#{movie_id.to_i}?api_key=#{@api_key}&language=en-US"
@@ -41,7 +39,7 @@ class Tmdb
     movies
   end
 
-  def get_actor_details(actor_id)
+  def self.get_actor_details(actor_id)
     # takes an actor ID and returns the JSON response
     url = "https://api.themoviedb.org/3/person/#{actor_id}?api_key=#{@api_key}&language=en-US&include_adult=false"
     URI.parse(url).read
