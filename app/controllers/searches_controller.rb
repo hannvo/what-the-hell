@@ -61,6 +61,7 @@ class SearchesController < ApplicationController
     @query = user_params[:search][:queries].strip.split("&")
     # @query [ "123" ] is an array stores the ids we need to use to call the api
     # @results = search_results(params[:search][:queries])
+    redirect_to result_path(Result.last) if @query.count > 1
     tmdb = Tmdb.new(ENV["TMDB_KEY"])
     @results = tmdb.get_actors_and_movie(@query.last.to_i)
   end
