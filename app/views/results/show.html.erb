@@ -8,12 +8,13 @@
                 <%= @result["name"] %>
             </h1>
         </div>
-
+        
+        <%= render 'shared/text/biography' %>
 
         <div class="actor-details" data-results-target="details">
-            <p><em>Biography:</em> </p>
             <p>Born: <%= @result["birthday"] %> in <%= @result["place_of_birth"] %></p>
         </div>
+        
     </div>
-    <%= link_to "Back", root_path, class: "btn btn-primary m-5" %>
+    <%= render 'shared/navigation/footer' %>
 </div>

@@ -2,7 +2,7 @@ import confetti from "canvas-confetti";
 import { Controller } from "stimulus";
 
 export default class extends Controller {
-  static targets = ["name", "details"];
+  static targets = ["name", "details", "btnCollapse", "txtCollapse"];
 
   connect() {
     confetti({
@@ -26,5 +26,14 @@ export default class extends Controller {
     } else {
       this.detailsTarget.classList.add("hidden");
     }
+  }
+
+  toggleCollapse() {
+    console.log("here");
+    this.btnCollapseTarget.classList.toggle("active");
+    const text = this.element.nextElementSibling;
+    text.style.display === "block"
+      ? (text.style.display = "none")
+      : (text.style.display = "block");
   }
 }
