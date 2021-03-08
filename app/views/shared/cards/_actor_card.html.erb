@@ -1,0 +1,14 @@
+<%= link_to(result_path(Result.last)) do %>
+  <div class="actor-card-category">
+
+    <% if actor['profile_path'] %>
+      <% img_url = "https://image.tmdb.org/t/p/w200/#{actor['profile_path']}" %>
+      <img class="actor-card-img" src=<%= img_url %> >
+    <% else %>
+      <%= image_tag "placeholder.jpg", alt: "", class: 'actor-card-img' %>
+    <% end %>
+
+    <div class="actor-card-title"><%= actor["name"]%></div>
+    <p class="actor-card-character">as: <%= actor["character"] %></p>
+  </div>
+<% end %>
