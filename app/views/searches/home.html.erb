@@ -1,5 +1,6 @@
 <div class="background-gradient">
     <div class="container container-home-page scroll-container">
+        <%= link_to "FakeDelay result", result_path(Result.create(json: "{\"photo\":true}")) %>
         <% if @query.empty? %>
             <!-- if there isn't any search in the parameters -->
             <%= render "shared/text/main_title" %>

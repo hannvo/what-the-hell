@@ -6,3 +6,4 @@ class ActorDetailsJob < ApplicationJob
     result.update(json: json_response)
   end
 end
+ 
