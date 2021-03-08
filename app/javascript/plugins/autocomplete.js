@@ -1,12 +1,11 @@
-// display movies in divs
-// if you click a movie the form will be sent with movie id?
-//
 const submitMovie = (event) => {
   const form = document.getElementById("new_search");
-  const movieInput = document.getElementById("search_query");
-  console.log(form);
+  const formInput = document.getElementById("search_query");
+  const movieInput = document.getElementById("movie-input");
+  // enter chosen movie in the search field
+  movieInput.value = event.currentTarget.attributes["movie-title"].value;
   // set the value of the form field to the movie id
-  movieInput.value = event.currentTarget.attributes["movie-id"].value;
+  formInput.value = event.currentTarget.attributes["movie-id"].value;
   form.submit();
 };
 
@@ -22,9 +21,10 @@ const fetchMovies = (query) => {
 
 const insertMovies = (data) => {
   const movieSuggestions = document.getElementById("movie-suggestions");
+  movieSuggestions.innerHTML = "";
   const firstFour = data.results.slice(0, 4);
   firstFour.forEach((movie) => {
-    const movieCard = `<div class="film-option" movie-id="${movie.id}">
+    const movieCard = `<div class="film-option" movie-id="${movie.id}" movie-title="${movie.original_title}">
                           <img src="https://image.tmdb.org/t/p/w200/${
                             movie.poster_path
                           }" alt="">
@@ -41,7 +41,7 @@ const insertMovies = (data) => {
 };
 
 const initAutocomplete = () => {
-  const movieInput = document.getElementById("search_query");
+  const movieInput = document.getElementById("movie-input");
   const movieSuggestions = document.getElementById("movie-suggestions");
 
   // added check for the presence of the element to suppress
