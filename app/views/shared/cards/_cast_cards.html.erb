@@ -1,14 +1,9 @@
 <div class="actor-card-container">
   <div class="actor-cards">
-    <% @results[:cast].each do |actor, details| %>
-    <%= link_to(result_path(Result.create(json: details["id"]))) do %>
-        <div class="actor-card-category">
-          <% img_url = "https://image.tmdb.org/t/p/w200/#{details['profile_path']}" %>
-          <img class="actor-card-img" src=<%= img_url %> >
-          <div class="actor-card-title"><%= details["name"]%></div>
-          <p class="actor-card-character">as: <%= details["character"] %></p>
-        </div>
-      <% end %>
+    <% @results[:cast].each do |actor| %>
+
+      <%= render "shared/cards/actor_card", actor: actor %>
+
     <% end %>
   </div>
 </div>
