@@ -1,7 +1,7 @@
-.movie-card {
+.movie-card,
+.film-option {
   display: flex;
   align-items: center;
-  background-color: rgba(255, 255, 255, 0.6);
   padding: 4px;
   margin-bottom: 4px;
   img {
@@ -12,6 +12,17 @@
   p {
     margin: 0;
     padding-left: 12px;
+  }
+}
+
+.movie-card {
+  background-color: rgba(255, 255, 255, 0.6);
+  .movie-card__title {
     font-size: 20px;
   }
+}
+
+.film-option {
+  cursor: pointer;
+  background-color: rgba(255, 255, 255, 0.2);
 }

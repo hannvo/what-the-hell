@@ -1,9 +1,15 @@
-<div class="movie-card">
-  <div class="movie-card__poster" >
-    <% img_url = "https://image.tmdb.org/t/p/w200/#{@results[:movie][:img_path]}" %>
-    <img src=<%= img_url %> >
+<% @results[:movies].each do |movie| %>
+  <div class="movie-card">
+    <div class="movie-card__poster" >
+      <% if movie[:img_path] %>
+        <img src=<%= "https://image.tmdb.org/t/p/w200/#{movie[:img_path]}" %> >
+      <% else %>
+        <%= image_tag "placeholder.jpg", alt: "" %>
+      <% end %>
+    </div>
+    <p class="movie-card__title">
+      <%= movie[:title] %>
+      (<%= movie[:year].first(4) %>)
+    </p>
   </div>
-  <p class="movie-card__title">
-    <%= @results[:movie][:title] %>
-  </p>
-</div>
+<% end %>
