@@ -1,9 +1,9 @@
-<div class="input-wrapper">
-  <%= simple_form_for @search, url: searches_path(queries: @query.join('&')) do |f| %>
-      <%= f.input :query, label: false, placeholder: 'Type a movie' %>
-  <% end %>
+<%= text_field_tag 'movie-input', nil, placeholder: 'Type a movie...', autocomplete: 'off' %>
 
-  <div id="movie-suggestions"
-       data-tmdb-api-key="<%= ENV['TMDB_KEY'] %>">
-  </div>
+<%= simple_form_for @search, url: searches_path(queries: @query.join('&')) do |f| %>
+    <%= f.hidden_field :query, label: false %>
+<% end %>
+
+<div id="movie-suggestions"
+     data-tmdb-api-key="<%= ENV['TMDB_KEY'] %>">
 </div>
