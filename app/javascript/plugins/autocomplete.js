@@ -21,6 +21,7 @@ const fetchMovies = (query) => {
 
 const insertMovies = (data) => {
   const movieSuggestions = document.getElementById("movie-suggestions");
+  movieSuggestions.innerHTML = "";
   const firstFour = data.results.slice(0, 4);
   firstFour.forEach((movie) => {
     const movieCard = `<div class="film-option" movie-id="${movie.id}" movie-title="${movie.original_title}">
