@@ -1,4 +1,5 @@
 <div class="scroll-container" data-controller="results">
+    <%= render 'shared/navigation/loading_animation' if @result == 'photo' %>
     <%= render 'shared/cards/final_result_card' %>
     <div class="container result-content">
 

@@ -20,8 +20,7 @@ class SearchesController < ApplicationController
 
   def get_actors
     # just left here for test prposes, not really used
-    tmdb = Tmdb.new(ENV["TMDB_KEY"])
-    @result = tmdb.get_actors(params[:movie_id])
+    @result = Tmdb.get_actors(params[:movie_id])
     render json: result
   end
 
@@ -58,12 +57,13 @@ class SearchesController < ApplicationController
   end
 
   def set_vars_from_params
+    # @query [ "123", "1231", "123" ] is an array that stores the ids we need to use to call the api
     @query = user_params[:search][:queries].strip.split("&")
-    # @query [ "123" ] is an array stores the ids we need to use to call the api
     # @results = search_results(params[:search][:queries])
-    redirect_to result_path(Result.last) if @query.count > 1
-    tmdb = Tmdb.new(ENV["TMDB_KEY"])
-    @results = tmdb.get_actors_and_movie(@query.last.to_i)
+    # redirect_to result_path(Result.last) if @query.count > 1
+    cast = Tmdb.get_actors(@query.last.to_i)
+    movies = Tmdb.get_movie_details(@query)
+    @results = { cast: cast, movies: movies }
   end
 
   def full_query

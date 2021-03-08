@@ -1,14 +1,12 @@
 require "open-uri"
 
 class Tmdb
-  def initialize(api_key)
-    @api_key = api_key
-  end
+  @api_key = ENV['TMDB_KEY']
 
-  def get_actors_and_movie(movie_id)
+  def self.get_actors(movie_id)
     actors_url = "https://api.themoviedb.org/3/movie/#{movie_id}/credits?api_key=#{@api_key}&language=en-US"
 
-    actors_response = open(actors_url).read
+    actors_response = URI.parse(actors_url).read
     actors = JSON.parse(actors_response)["cast"]
     filtered = actors.select do |actor|
       actor["known_for_department"] == "Acting"
@@ -17,31 +15,30 @@ class Tmdb
       a["popularity"] - b["popularity"]
     end
 
-    results = { cast: {},
-                movie: {} }
+    cast = []
+    top_actors.first(4).each { |actor| cast << actor }
 
-    top_actors.first(4).each_with_index do |actor, index|
-      results[:cast]["actor#{index+1}".to_sym] = actor
+    cast
+  end
+
+  def self.get_movie_details(array_of_movie_ids)
+    movies = []
+    array_of_movie_ids.each do |movie_id|
+      movie_url = "https://api.themoviedb.org/3/movie/#{movie_id.to_i}?api_key=#{@api_key}&language=en-US"
+      movie_response = URI.parse(movie_url).read
+      movie_details = JSON.parse(movie_response)
+
+      movies << {
+        title: movie_details["title"],
+        img_path: movie_details["poster_path"],
+        year: movie_details["release_date"]
+      }
     end
-
-    movie_details = fetch_movie_details(movie_id)
-
-    results[:movie] = {
-      title: movie_details["title"],
-      img_path: movie_details["poster_path"],
-      year: movie_details["release_date"]
-    }
-    results
+    # returns array of hashes with movie details
+    movies
   end
 
-  def fetch_movie_details(movie_id)
-    movie_url = "https://api.themoviedb.org/3/movie/#{movie_id}?api_key=#{@api_key}&language=en-US"
-
-    movie_response = open(movie_url).read
-    JSON.parse(movie_response)
-  end
-
-  def get_actor_details(actor_id)
+  def self.get_actor_details(actor_id)
     # takes an actor ID and returns the JSON response
     url = "https://api.themoviedb.org/3/person/#{actor_id}?api_key=#{@api_key}&language=en-US&include_adult=false"
     URI.parse(url).read

@@ -20,7 +20,7 @@ class Search < ApplicationRecord
   def julia_roberts
     # creates a result for the current search with JR's details
     # fetched from TMDB
-    result_json = Tmdb.new(ENV["TMDB_KEY"]).get_actor_details('1204')
+    result_json = Tmdb.get_actor_details('1204')
     self.result = Result.create(json: result_json)
   end
 
