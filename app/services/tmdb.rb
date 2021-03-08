@@ -8,7 +8,7 @@ class Tmdb
   def get_actors_and_movie(movie_id)
     actors_url = "https://api.themoviedb.org/3/movie/#{movie_id}/credits?api_key=#{@api_key}&language=en-US"
 
-    actors_response = open(actors_url).read
+    actors_response = URI.parse(actors_url).read
     actors = JSON.parse(actors_response)["cast"]
     filtered = actors.select do |actor|
       actor["known_for_department"] == "Acting"
@@ -37,7 +37,7 @@ class Tmdb
   def fetch_movie_details(movie_id)
     movie_url = "https://api.themoviedb.org/3/movie/#{movie_id}?api_key=#{@api_key}&language=en-US"
 
-    movie_response = open(movie_url).read
+    movie_response = URI.parse(movie_url).read
     JSON.parse(movie_response)
   end
 
