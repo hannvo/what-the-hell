@@ -50,18 +50,12 @@
   left: 42px;
 }
 
-.fixed-name {
-  position: fixed;
-  top: 24px;
-}
-
 .result-content {
-  height: 100vh;
+  height: 80vh;
   scroll-snap-align: center;
 }
 
 .actor-details {
-  position: fixed;
   top: 140px;
   z-index: -1;
 }
