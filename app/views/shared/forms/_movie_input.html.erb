@@ -1,5 +1,7 @@
-<%= simple_form_for @search, url: searches_path(queries: @query.join('&')), html: { autocomplete: 'off' } do |f| %>
-    <%= f.input :query, label: false, placeholder: 'Type a movie' %>
+<%= text_field_tag 'movie-input', nil, placeholder: 'Type a movie...', autocomplete: 'off' %>
+
+<%= simple_form_for @search, url: searches_path(queries: @query.join('&')) do |f| %>
+    <%= f.hidden_field :query, label: false %>
 <% end %>
 
 <div id="movie-suggestions"
