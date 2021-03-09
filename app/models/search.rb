@@ -7,21 +7,11 @@ class Search < ApplicationRecord
 
   private
 
-  def fake_results
-    fake_json = {
-      title: "My fake movie",
-      year: 2006,
-      thumb: 'http://my.image.url.com',
-      db_id: 1123
-    }.to_json
-    self.result = Result.new(json: fake_json)
-  end
-
   def julia_roberts
     return unless query == "Julia Roberts"
 
-    # creates a result for the current search with JR's details
-    # fetched from TMDB
+    sleep 5
+    # creates a result for the current search with JR's details fetched from TMDB
     result_json = Tmdb.get_actor_details('1204')
     self.result = Result.create(json: result_json)
   end
