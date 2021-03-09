@@ -2,7 +2,7 @@
   --borderWidth: 20px;
   background: #1d1f20;
   position: relative;
-  width: calc(100vw - 40 px);
+  width: calc(100vw - 40px);
   margin: 20px;
   border-radius: 8px;
 }
@@ -48,33 +48,32 @@
   height: calc(100vh - 40px);
   width: 100%;
   border-radius: 8px;
-  /* position: fixed;
-  top: 0;
-  z-index: -1; */
 }
 
 .actor-name {
   color: $light-gray;
   font-weight: bold;
   text-shadow: 0.05em 0.05em black;
-  position: absolute;
-  bottom: 50px;
-  left: 42px;
-}
-
-.fixed-name {
-  position: fixed;
-  top: 24px;
-}
-
-.result-content {
-  height: 100vh;
+  margin-bottom: 32px;
 }
 
 .actor-details {
-  position: fixed;
-  top: 140px;
-  z-index: -1;
+  position: relative;
+}
+
+.result-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100vh;
+  padding: 24px 32px 0;
+}
+
+.result-content {
+  margin-top: -100px;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
 }
 
 .footer-home-nav {
@@ -91,9 +90,9 @@
 
 .btn-home {
   display: inline-block;
-  color: #442202;
+  color: rgba(52,27,69, 0.8);
   font-size: 36px;
-  padding: 10px;
+  padding: 16px;
   &:hover {
     cursor: pointer;
     color: #5c024d;

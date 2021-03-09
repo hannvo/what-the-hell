@@ -24,10 +24,12 @@ import "bootstrap";
 import "controllers";
 import { initAutocomplete } from "../plugins/autocomplete";
 import { initSlider } from "../plugins/swipe_slider";
+import { initBiographyExpand } from "../plugins/biography_expand";
 
 document.addEventListener("turbolinks:load", () => {
   // Call your functions here, e.g:
   // initSelect2();
   initAutocomplete();
   initSlider();
+  initBiographyExpand();
 });
