@@ -21,5 +21,7 @@
             <%= render "shared/cards/cast_cards" %>
         <% end %>
     </div>
+    <% if @query.empty? %>
     <div class="cover"></div>
+    <% end %>
 </div>
