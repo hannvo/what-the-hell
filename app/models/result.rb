@@ -6,6 +6,6 @@ class Result < ApplicationRecord
   def async_update
     return unless json.is_a? Integer
 
-    ActorDetailsJob.perform_later(self)
+    ActorDetailsJob.perform_now(self)
   end
 end
