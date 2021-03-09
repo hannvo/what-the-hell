@@ -18,6 +18,8 @@ class Search < ApplicationRecord
   end
 
   def julia_roberts
+    return unless query == "Julia Roberts"
+
     # creates a result for the current search with JR's details
     # fetched from TMDB
     result_json = Tmdb.get_actor_details('1204')
@@ -25,6 +27,6 @@ class Search < ApplicationRecord
   end
 
   def async_update
-    CallApiJob.perform_later(self.id)
+    CallApiJob.perform_later(id)
   end
 end

@@ -4,7 +4,6 @@ Rails.application.routes.draw do
 
   resources :searches, only: :create
   resources :results, only: :show
-  get "/search_actors/:movie_id", to: "searches#get_actors"
 
   # Sidekiq Web UI, only for admins.
   require "sidekiq/web"

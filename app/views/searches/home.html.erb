@@ -1,4 +1,5 @@
 <div class="background-gradient">
+
     <div class="container container-home-page scroll-container">
         <%= link_to "FakeDelay result", result_path(Result.create(json: "{\"photo\":true}")) %>
         <% if @query.empty? %>
@@ -6,6 +7,7 @@
             <%= render "shared/text/main_title" %>
            <div> <%= render "shared/forms/movie_input" %>
             <%= render "shared/forms/image_upload" %></div>
+            
 
             <p class="tag-line">
                 Give us a movie they played in or a picture and we will tell you!
@@ -19,6 +21,6 @@
 
             <%= render "shared/cards/cast_cards" %>
         <% end %>
-
     </div>
+    <div class="cover"></div>
 </div>

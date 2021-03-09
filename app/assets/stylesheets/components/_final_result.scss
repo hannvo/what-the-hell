@@ -1,7 +1,40 @@
+.final-result-card-container {
+  --borderWidth: 20px;
+  background: #1D1F20;
+  position: relative;
+  width: 90%;
+  margin: 20px;
+}
+
+.final-result-card-container:after {
+  content: '';
+  position: absolute;
+  top: calc(-1 * var(--borderWidth));
+  left: calc(-1 * var(--borderWidth));
+  height: calc(100% + var(--borderWidth) * 2);
+  width: calc(100% + var(--borderWidth) * 2);
+  background: linear-gradient(60deg, #f79533, #f37055, #ef4e7b, #a166ab, #5073b8, #1098ad, #07b39b, #6fba82);
+  z-index: -1;
+  animation: animatedgradient 3s ease alternate infinite;
+  background-size: 300% 300%;
+}
+
+@keyframes animatedgradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
 .final-result-card {
   background-position: center;
   background-size: cover;
-  height: 100vh;
+  height: 94vh;
   width: 100%;
   /* position: fixed;
   top: 0;
@@ -11,9 +44,10 @@
 .actor-name {
   color: $light-gray;
   font-weight: bold;
-  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+  text-shadow: 0.02em 0 black, 0 0.02em black;
   position: absolute;
-  bottom: 80px;
+  bottom: 50px;
+  left: 42px;
 }
 
 .fixed-name {

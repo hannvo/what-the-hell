@@ -25,12 +25,6 @@ class SearchesController < ApplicationController
     end
   end
 
-  def get_actors
-    # just left here for test prposes, not really used
-    @result = Tmdb.get_actors(params[:movie_id])
-    render json: result
-  end
-
   private
 
   def photo_upload_handler
@@ -73,11 +67,32 @@ class SearchesController < ApplicationController
   def set_vars_from_params
     # @query [ "123", "1231", "123" ] is an array that stores the ids we need to use to call the api
     @query = user_params[:search][:queries].strip.split("&")
+    if @query.count > 1 && (actor_ids = Tmdb.matching_cast(@query))
+      if actor_ids.count == 1
+        # if we have 2 movie inputs and one matching actor
+        redirect_to result_path(Result.create(json: actor_ids.first))
+      elsif actor_ids.count > 1
+        # if we have 2 movie inputs and several matching actors they
+        # will be displayed on the preresults page
+        cast = []
+        actor_ids.each do |actor_id|
+          cast << Result.create(json: Tmdb.get_actor_details(actor_id))
+        end
+        movies = Tmdb.get_movie_details(@query)
+        @results = { cast: cast, movies: movies }
+      else
+        cast = Tmdb.get_actors(@query.last.to_i)
+        movies = Tmdb.get_movie_details(@query)
+        @results = { cast: cast, movies: movies }
+      end
+
+    else
+      # if there is only 1 movie input or no matching actors display preresults page
+      cast = Tmdb.get_actors(@query.last.to_i)
+      movies = Tmdb.get_movie_details(@query)
+      @results = { cast: cast, movies: movies }
+    end
     # @results = search_results(params[:search][:queries])
-    # redirect_to result_path(Result.last) if @query.count > 1
-    cast = Tmdb.get_actors(@query.last.to_i)
-    movies = Tmdb.get_movie_details(@query)
-    @results = { cast: cast, movies: movies }
   end
 
   def search_results(query)

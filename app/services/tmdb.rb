@@ -4,19 +4,14 @@ class Tmdb
   @api_key = ENV['TMDB_KEY']
 
   def self.get_actors(movie_id)
-    actors_url = "https://api.themoviedb.org/3/movie/#{movie_id}/credits?api_key=#{@api_key}&language=en-US"
+    filtered = api_call_for_actors(movie_id)
 
-    actors_response = URI.parse(actors_url).read
-    actors = JSON.parse(actors_response)["cast"]
-    filtered = actors.select do |actor|
-      actor["known_for_department"] == "Acting"
-    end
     top_actors = filtered.sort do |b, a|
       a["popularity"] - b["popularity"]
     end
 
     cast = []
-    top_actors.first(4).each { |actor| cast << actor }
+    top_actors.first(4).each { |actor| cast << Result.create(json: actor.to_json) }
 
     cast
   end
@@ -38,10 +33,41 @@ class Tmdb
     movies
   end
 
+  def self.matching_cast(array_of_movie_ids)
+    # get cast to have 2 arrays with [ actor, actor, actr, ...]
+    # arr-o-m-i ["1232", '1232']
+    first_movie_id = array_of_movie_ids.first
+    first_movie_actors_ids = api_call_for_actors(first_movie_id.to_i).map { |actor| actor["id"] }
+
+    second_movie_id = array_of_movie_ids[1]
+    second_movie_actors_ids = api_call_for_actors(second_movie_id.to_i).map { |actor| actor["id"] }
+
+    first_movie_actors_ids & second_movie_actors_ids
+  end
+
   def self.get_actor_details(actor_id)
+    actor_id = actor_id.to_s if actor_id.is_a? Integer
     # takes an actor ID and returns the JSON response
     url = "https://api.themoviedb.org/3/person/#{actor_id}?api_key=#{@api_key}&language=en-US&include_adult=false"
-    URI.parse(url).read
+    begin
+      URI.parse(url).read
+    rescue
+      self.actor_not_found
+    end
+  end
+
+  def self.api_call_for_actors(movie_id)
+    actors_url = "https://api.themoviedb.org/3/movie/#{movie_id}/credits?api_key=#{@api_key}&language=en-US"
+
+    actors_response = URI.parse(actors_url).read
+    actors = JSON.parse(actors_response)["cast"]
+    actors.select do |actor|
+      actor["known_for_department"] == "Acting"
+    end
+  end
+
+  def self.actor_not_found
+    "{\"adult\":\"\",\"also_known_as\":\"\",\"biography\":\"\",\"birthday\":\"\",\"deathday\":\"\",\"gender\":\"\",\"homepage\":\"\",\"id\":\"\",\"imdb_id\":\"\",\"known_for_department\":\"\",\"name\":\"NOT FOUND\",\"place_of_birth\":\"\",\"popularity\":\"\",\"profile_path\":\"\"}"
   end
 
   def self.search_actor_name(query)
