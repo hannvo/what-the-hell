@@ -1,0 +1,16 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat');
+
+.tag-line {
+	font-family: "Montserrat";
+	color: #FFF;
+	letter-spacing: 1px;
+  background-image: url(https://media.giphy.com/media/kaCZPvyS4LyOZ3Ywu9/giphy.gif);
+	background-size: cover;
+	color: transparent;
+	-moz-background-clip: text;
+	-webkit-background-clip: text;
+  text-align: center;
+  text-transform: uppercase;
+	line-height: 1.10;
+	margin: -15px 0;
+}

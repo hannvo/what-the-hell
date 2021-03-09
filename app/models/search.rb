@@ -2,7 +2,7 @@ class Search < ApplicationRecord
   belongs_to :user, optional: true
   belongs_to :result, optional: true
   has_one_attached :photo
-  before_create :julia_roberts
+  # before_create :julia_roberts
   # after_commit :async_update
 
   private
@@ -25,6 +25,6 @@ class Search < ApplicationRecord
   end
 
   def async_update
-    CallApiJob.perform_later(self.id)
+    CallApiJob.perform_later(id)
   end
 end
