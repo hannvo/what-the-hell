@@ -9,12 +9,14 @@
             </h1>
         </div>
         
-        <%= render 'shared/text/biography' %>
 
         <div class="actor-details" data-results-target="details">
             <p>Born: <%= @result["birthday"] %> in <%= @result["place_of_birth"] %></p>
         </div>
+        <%= render 'shared/navigation/movie_recommendations' %>
         
     </div>
-    <%= render 'shared/navigation/footer' %>
+    <%= render 'shared/text/biography' %>
+    <%= render 'shared/buttons/biography_modal' %>
 </div>
+    <%= render 'shared/navigation/footer' %>

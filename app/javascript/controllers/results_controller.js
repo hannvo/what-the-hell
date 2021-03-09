@@ -29,7 +29,6 @@ export default class extends Controller {
   }
 
   toggleCollapse() {
-    console.log("here");
     this.btnCollapseTarget.classList.toggle("active");
     const text = this.element.nextElementSibling;
     text.style.display === "block"
