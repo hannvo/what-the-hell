@@ -2,6 +2,8 @@ class ResultsController < ApplicationController
   skip_before_action :authenticate_user!
 
   def show
-    @result = JSON.parse(Result.find(params[:id]).json)
+    @res = Result.find(params[:id])
+    @result = @res.details unless @res.json.nil?
+    FaceRecognition.call(@res.searches.first.photo.key)
   end
 end

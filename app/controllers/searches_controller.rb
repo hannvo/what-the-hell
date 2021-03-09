@@ -14,10 +14,14 @@ class SearchesController < ApplicationController
     # otherwise use just the newly added query
     query = params[:queries].present? ? "#{params[:queries]}&#{params[:search][:query]}" : params[:search][:query]
     # create a search with the query built above
-    @search = Search.new(query: query)
+    @search = Search.new(query: query, photo: params[:search][:photo])
     # set user if logged in
     @search.user = current_user if user_signed_in?
-    if @search.save
+    if @search.save && params[:search][:photo]
+      @result = Result.create
+      @search.update(result: @result)
+      redirect_to result_path(@search.result)
+    elsif @search.save
       # if the search saved successfully, come back to the same page and add the complete query to params
       redirect_to root_path(construct_query)
     else
@@ -31,8 +35,14 @@ class SearchesController < ApplicationController
     # for now, pretend any submitted image is Julia Roberts and
     # redirect to the result page for that search
     # actually we'll want to send the API request here
-    @search = Search.new(query: "Julia Roberts")
-    @search.save ? (redirect_to result_path(@search.result)) : (redirect_to root_path)
+    raise
+    @result = Result.create
+    @search.result = @result
+    if @search.save
+      redirect_to result_path(@search.result)
+    else
+      redirect_to root_path
+    end
   end
 
   def construct_query

@@ -10,7 +10,6 @@ class Search < ApplicationRecord
   def julia_roberts
     return unless query == "Julia Roberts"
 
-    sleep 10
     # creates a result for the current search with JR's details fetched from TMDB
     result_json = Tmdb.get_actor_details('1204')
     self.result = Result.create(json: result_json)
