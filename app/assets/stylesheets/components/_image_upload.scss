@@ -12,6 +12,11 @@
   color: #face66;
   font-size: 60px;
   padding: 10px;
+  position: fixed;
+  top: 59%;
+  left: 50%;
+  transform: translate(-50%, 0);
+  z-index: -1;
   &:hover {
     cursor: pointer;
     color: #cd20f8;
