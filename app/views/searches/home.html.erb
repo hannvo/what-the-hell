@@ -17,13 +17,12 @@
             <%= render "shared/cards/movie_cards" %>
 <div>
             <% if @results[:movies].count == 2 %>
-                <p class="explanation-sub">Here the actors who have played in your selected movies</p></div>
+                <p class="explanation-sub">Here are the actors who have played in your selected movies</p></div>
             <% else %>
                 <%= render "shared/forms/movie_input" %>
             <% end %>
             <%= render "shared/cards/cast_cards" %>
-            <%= render "shared/cards/movie_reco" %>
-           
+                      
         <% end %>
     </div>
     
