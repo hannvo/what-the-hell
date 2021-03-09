@@ -23,10 +23,13 @@ import "bootstrap";
 // Internal imports, e.g:
 import "controllers";
 import { initAutocomplete } from "../plugins/autocomplete";
-// import { initSelect2 } from '../components/init_select2';
+import { initSlider } from "../plugins/swipe_slider";
+import { initBiographyExpand } from "../plugins/biography_expand";
 
 document.addEventListener("turbolinks:load", () => {
   // Call your functions here, e.g:
   // initSelect2();
   initAutocomplete();
+  initSlider();
+  initBiographyExpand();
 });

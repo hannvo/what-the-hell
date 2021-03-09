@@ -1,0 +1,36 @@
+.full-bio {
+  height: 100% !important;
+}
+
+#biography {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  height: 270px;
+  font-size: 20px;
+}
+
+.bio-gradient {
+  height: 200px;
+  width: 100%;
+  position: absolute;
+  bottom: 86px;
+  z-index: 2;
+  background-image: linear-gradient(rgba(255, 255, 255, 0), $yellow);
+}
+
+#btn-expand-bio,
+.btn-close-bio {
+  cursor: pointer;
+  font-size: 16px;
+  padding: 8px 16px;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: rgba(52,27,69, 0.8);
+  color: $light-gray;
+  margin-top: 16px;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+  &:hover,
+  &:focus {
+    opacity: 0.9;
+  }
+}

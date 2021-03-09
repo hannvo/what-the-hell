@@ -1,0 +1,17 @@
+.collapse {
+  background-color: #a2de96;
+  border: none;
+  outline: none;
+  font-size: 25px;
+}
+
+.active,
+.collapse:hover {
+  background-color: #438a5e;
+}
+
+.collapsible-text {
+  background-color: #e1ffc2;
+  display: none;
+  font-size: 20px;
+}
