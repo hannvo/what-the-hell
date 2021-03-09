@@ -19,12 +19,12 @@ const initLoadingScreen = () => {
 const typeLoadingText = () => {
   const options = {
     strings: [
-      "Calculating facial symmetry...",
-      "Processing cheekbone geometry...",
-      "De-interlacing nosebridge parallax...",
+      "Calculating chin width",
+      "Processing cheekbones",
+      "Checking eye colour",
     ],
     typeSpeed: 60,
-    startDelay: 15,
+    startDelay: 3000,
     loop: true,
     showCursor: false,
     shuffle: true,
