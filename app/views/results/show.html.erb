@@ -8,13 +8,13 @@
                 <%= @result["name"] %>
             </h1>
         </div>
-        
+
 
         <div class="actor-details" data-results-target="details">
             <p>Born: <%= @result["birthday"] %> in <%= @result["place_of_birth"] %></p>
         </div>
-        <%= render 'shared/navigation/movie_recommendations' %>
-        
+        <% # render 'shared/navigation/movie_recommendations' %>
+
     </div>
     <%= render 'shared/text/biography' %>
     <%= render 'shared/buttons/biography_modal' %>
