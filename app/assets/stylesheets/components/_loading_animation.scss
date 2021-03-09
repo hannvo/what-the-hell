@@ -82,6 +82,7 @@
 
   .loading-subtitle {
     font-size: x-small;
+    color: $purple;
   }
 
   &::before,
@@ -90,7 +91,7 @@
     display: block;
     width: 15px;
     height: 15px;
-    background: $gray;
+    background: $purple;
     position: absolute;
     animation: load 0.7s infinite alternate ease-in-out;
   }

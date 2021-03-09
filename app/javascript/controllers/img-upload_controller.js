@@ -19,7 +19,6 @@ const initLoadingScreen = () => {
 const typeLoadingText = () => {
   const options = {
     strings: [
-      "Analysing...",
       "Calculating facial symmetry...",
       "Processing cheekbone geometry...",
       "De-interlacing nosebridge parallax...",
@@ -28,6 +27,7 @@ const typeLoadingText = () => {
     startDelay: 15,
     loop: true,
     showCursor: false,
+    shuffle: true,
   };
 
   const typed = new Typed(".loading-subtitle", options);
