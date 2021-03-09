@@ -15,12 +15,17 @@
         <% else %>
             <!-- if there already has been movie input -->
             <%= render "shared/cards/movie_cards" %>
-
-            <%= render "shared/forms/movie_input" %>
-
+<div>
+            <% if @results[:movies].count == 2 %>
+                <p class="explanation-sub">Here are the actors who have played in your selected movies</p></div>
+            <% else %>
+                <%= render "shared/forms/movie_input" %>
+            <% end %>
             <%= render "shared/cards/cast_cards" %>
+                      
         <% end %>
     </div>
+    
     <% if @query.empty? %>
     <div class="cover"></div>
     <% end %>
