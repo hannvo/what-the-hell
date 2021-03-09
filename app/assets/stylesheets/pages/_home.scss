@@ -7,12 +7,11 @@
 
 .cover {
   background-image: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.6)),
-    url(image_path("cover.jpg"));
-
-  background-size: contain;
+    url(image_path("coverfull.jpg"));
+  background-size: cover;
   background-repeat: no-repeat;
   width: 100vw;
-  height: 100vw;
+  height: 125vw;
   position: absolute;
   top: 0;
 }
