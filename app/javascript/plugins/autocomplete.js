@@ -19,15 +19,25 @@ const fetchMovies = (query) => {
     .then(insertMovies);
 };
 
+const movieImage = (movie) => {
+  let img_url = ""
+  if (movie.poster_path) {
+    img_url = `https://image.tmdb.org/t/p/w500${movie.poster_path}`;
+  } else {
+    img_url = `https://dummyimage.com/40x60/000/fff.jpg&text=${movie.original_title}`;
+  }
+  return img_url
+}
+
 const insertMovies = (data) => {
   const movieSuggestions = document.getElementById("movie-suggestions");
   movieSuggestions.innerHTML = "";
   const firstFour = data.results.slice(0, 4);
   firstFour.forEach((movie) => {
+    const img_url = movieImage(movie)
+
     const movieCard = `<div class="film-option" movie-id="${movie.id}" movie-title="${movie.original_title}">
-                          <img src="https://image.tmdb.org/t/p/w200/${
-                            movie.poster_path
-                          }" alt="">
+                          <img src="${img_url}" alt="">
                           <p>${
                             movie.original_title
                           } (${movie.release_date.slice(0, 4)})</p>
