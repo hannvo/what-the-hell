@@ -80,6 +80,10 @@
   color: $gray;
   letter-spacing: 0.2em;
 
+  .loading-subtitle {
+    font-size: x-small;
+  }
+
   &::before,
   &::after {
     content: "";
