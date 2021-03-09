@@ -11,7 +11,7 @@ class Tmdb
     end
 
     cast = []
-    top_actors.first(4).each { |actor| cast << actor }
+    top_actors.first(4).each { |actor| cast << Result.create(json: actor.to_json) }
 
     cast
   end
@@ -46,9 +46,14 @@ class Tmdb
   end
 
   def self.get_actor_details(actor_id)
+    actor_id = actor_id.to_s if actor_id.is_a? Integer
     # takes an actor ID and returns the JSON response
     url = "https://api.themoviedb.org/3/person/#{actor_id}?api_key=#{@api_key}&language=en-US&include_adult=false"
-    URI.parse(url).read
+    begin
+      URI.parse(url).read
+    rescue
+      self.actor_not_found
+    end
   end
 
   def self.api_call_for_actors(movie_id)
@@ -59,5 +64,9 @@ class Tmdb
     actors.select do |actor|
       actor["known_for_department"] == "Acting"
     end
+  end
+
+  def self.actor_not_found
+    "{\"adult\":\"\",\"also_known_as\":\"\",\"biography\":\"\",\"birthday\":\"\",\"deathday\":\"\",\"gender\":\"\",\"homepage\":\"\",\"id\":\"\",\"imdb_id\":\"\",\"known_for_department\":\"\",\"name\":\"NOT FOUND\",\"place_of_birth\":\"\",\"popularity\":\"\",\"profile_path\":\"\"}"
   end
 end

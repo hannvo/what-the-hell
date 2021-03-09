@@ -62,7 +62,7 @@ class SearchesController < ApplicationController
         # will be displayed on the preresults page
         cast = []
         actor_ids.each do |actor_id|
-          cast << JSON.parse(Tmdb.get_actor_details(actor_id))
+          cast << Result.create(json: Tmdb.get_actor_details(actor_id))
         end
         movies = Tmdb.get_movie_details(@query)
         @results = { cast: cast, movies: movies }
@@ -89,7 +89,7 @@ class SearchesController < ApplicationController
   end
 
   def search_results(query)
-    search = Search.find_by(query: query) || Search.create(query: query)
+    search = Search.create(query: query)
     JSON.parse(search.result.json)
   end
 
