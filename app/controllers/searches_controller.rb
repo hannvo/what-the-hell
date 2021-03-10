@@ -90,12 +90,13 @@ class SearchesController < ApplicationController
         end
         movies = Tmdb.get_movie_details(@query)
         @results = { cast: cast, movies: movies }
+        @common_actors = true
       else
         cast = Tmdb.get_actors(@query.last.to_i)
         movies = Tmdb.get_movie_details(@query)
         @results = { cast: cast, movies: movies }
+        @common_actors = false
       end
-
     else
       # if there is only 1 movie input or no matching actors display preresults page
       cast = Tmdb.get_actors(@query.last.to_i)

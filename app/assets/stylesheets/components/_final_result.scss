@@ -1,19 +1,30 @@
 .final-result-card-container {
   --borderWidth: 20px;
-  background: #1D1F20;
+  background: #1d1f20;
   position: relative;
-  width: 90%;
+  width: calc(100vw - 40px);
   margin: 20px;
+  border-radius: 8px;
 }
 
 .final-result-card-container:after {
-  content: '';
+  content: "";
   position: absolute;
   top: calc(-1 * var(--borderWidth));
   left: calc(-1 * var(--borderWidth));
   height: calc(100% + var(--borderWidth) * 2);
   width: calc(100% + var(--borderWidth) * 2);
-  background: linear-gradient(60deg, #f79533, #f37055, #ef4e7b, #a166ab, #5073b8, #1098ad, #07b39b, #6fba82);
+  background: linear-gradient(
+    60deg,
+    #f79533,
+    #f37055,
+    #ef4e7b,
+    #a166ab,
+    #5073b8,
+    #1098ad,
+    #07b39b,
+    #6fba82
+  );
   z-index: -1;
   animation: animatedgradient 3s ease alternate infinite;
   background-size: 300% 300%;
@@ -34,34 +45,56 @@
 .final-result-card {
   background-position: center;
   background-size: cover;
-  height: 94vh;
+  height: calc(100vh - 40px);
   width: 100%;
-  /* position: fixed;
-  top: 0;
-  z-index: -1; */
+  border-radius: 8px;
 }
 
 .actor-name {
   color: $light-gray;
   font-weight: bold;
-  text-shadow: 0.02em 0 black, 0 0.02em black;
-  position: absolute;
-  bottom: 50px;
-  left: 42px;
-}
-
-.fixed-name {
-  position: fixed;
-  top: 24px;
-}
-
-.result-content {
-  height: 100vh;
-  scroll-snap-align: center;
+  text-shadow: 0.05em 0.05em black;
+  margin-bottom: 32px;
 }
 
 .actor-details {
+  position: relative;
+}
+
+.result-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100vh;
+  padding: 24px 32px 0;
+}
+
+.result-content {
+  margin-top: -100px;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+}
+
+.footer-home-nav {
+  text-align: center;
+}
+
+.slider-movie-recs {
   position: fixed;
-  top: 140px;
-  z-index: -1;
+  bottom: 36px;
+  height: 200px;
+  width: 100%;
+  background-color: blue;
+}
+
+.btn-home {
+  display: inline-block;
+  color: rgba(52,27,69, 0.8);
+  font-size: 36px;
+  padding: 16px;
+  &:hover {
+    cursor: pointer;
+    color: #5c024d;
+  }
 }
