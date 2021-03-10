@@ -32,7 +32,7 @@ const close = (event) => {
 const initBiographyExpand = () => {
   const bio = document.getElementById('biography');
 
-  if (bio.innerHTML.length > 200) {
+  if (bio && bio.innerHTML.length > 200) {
     const gradient = document.getElementById('bio-gradient');
     gradient.classList.add("bio-gradient");
     bio.insertAdjacentHTML('afterend', "<p id='btn-expand-bio'>Read more</p>");
