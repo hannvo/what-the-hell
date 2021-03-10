@@ -76,7 +76,11 @@ class SearchesController < ApplicationController
 
   def movie_recommendations(movie)
     recos = MovieRecommendation.get_movie_names(movie)
-    Tmdb.movie_details_recom(recos)
+    if recos["ERROR"]
+      nil
+    else
+      Tmdb.movie_details_recom(recos)
+    end
   end
 
   def full_query

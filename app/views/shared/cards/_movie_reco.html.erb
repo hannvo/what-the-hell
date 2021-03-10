@@ -1,12 +1,11 @@
 <div class="reco-container">
    <H2>HAVE YOU SEEN THIS ?</H2>
       <p>If you don't, you probably have to ! We have picked for you this 3 movies based on your search 🙌</p>
-<% @results[:movies].first(3).each do |movie| %>
+  <% @recommendations.each do |movie| %>
     <% if movie[:img_path] %>
-         <img src=<%= "https://image.tmdb.org/t/p/w200/#{movie[:img_path]}" %> >
+         <img class="reco-poster" src=<%= "https://image.tmdb.org/t/p/w200/#{movie[:img_path]}" %> >
     <% else %>
         <%= image_tag "placeholder.jpg", alt: "" %>
      <% end %>
-     <% end %>
-     <%= @recommendations %>
+  <% end %>
 </div>
