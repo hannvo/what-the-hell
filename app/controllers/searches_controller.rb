@@ -18,6 +18,7 @@ class SearchesController < ApplicationController
     # set user if logged in
     @search.user = current_user if user_signed_in?
     if @search.save && params[:search][:photo]
+      # if search contains a photo, attach an empty result to it and redirect
       @result = Result.create
       @search.update(result: @result)
       redirect_to result_path(@search.result)
@@ -32,10 +33,8 @@ class SearchesController < ApplicationController
   private
 
   def photo_upload_handler
-    # for now, pretend any submitted image is Julia Roberts and
-    # redirect to the result page for that search
-    # actually we'll want to send the API request here
-    raise
+    # create a new result and attach it to this search
+    # don't think we'll actually need this here at all
     @result = Result.create(json: "photo_upload")
     @search.result = @result
     if @search.save
