@@ -6,6 +6,7 @@
          <img src=<%= "https://image.tmdb.org/t/p/w200/#{movie[:img_path]}" %> >
     <% else %>
         <%= image_tag "placeholder.jpg", alt: "" %>
-     <% end %> 
-     <% end %> 
+     <% end %>
+     <% end %>
+     <%= @recommendations %>
 </div>

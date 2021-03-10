@@ -1,4 +1,5 @@
 require_relative "../services/tmdb.rb"
+require_relative "../services/movie_recommendation"
 
 class SearchesController < ApplicationController
   skip_before_action :authenticate_user!
@@ -69,7 +70,13 @@ class SearchesController < ApplicationController
 
     movies = Tmdb.get_movie_details(@query)
     @results = { cast: cast, movies: movies }
+    @recommendations = movie_recommendations(movies.last)
     # @results = search_results(params[:search][:queries])
+  end
+
+  def movie_recommendations(movie)
+    recos = MovieRecommendation.get_movie_names(movie)
+    Tmdb.movie_details_recom(recos)
   end
 
   def full_query
