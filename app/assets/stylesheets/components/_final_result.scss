@@ -76,6 +76,9 @@
   top: 0;
 }
 
+.footer-home-nav {
+  text-align: center;
+}
 
 .slider-movie-recs {
   position: fixed;
@@ -83,4 +86,15 @@
   height: 200px;
   width: 100%;
   background-color: blue;
+}
+
+.btn-home {
+  display: inline-block;
+  color: rgba(52,27,69, 0.8);
+  font-size: 36px;
+  padding: 16px;
+  &:hover {
+    cursor: pointer;
+    color: #5c024d;
+  }
 }
