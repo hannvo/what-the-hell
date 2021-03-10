@@ -20,10 +20,10 @@
 
             <% if @results[:movies].count == 2 %>
 
-              <% if @common_actors %>
-                <p class="explanation-sub">Here are the actors who have played in your selected movies</p>
+               <% if @common_actors %>
+                <p class="explanation-sub">Here are the actors who have played in your selected movies.</p>
               <% else %>
-                <p class="explanation-sub">There is no commun actor in those two movies, but we have found for you the top 4 actors in <%= @results[:movies].last[:title] %></p>
+                <p class="explanation-sub">There is no commun actor in those two movies, but we have found for you the top actors in <%= @results[:movies].last[:title] %>.</p>
               <% end %>
 
             <% else %>
