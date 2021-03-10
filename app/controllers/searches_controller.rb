@@ -1,4 +1,5 @@
 require_relative "../services/tmdb.rb"
+require_relative "../services/movie_recommendation"
 
 class SearchesController < ApplicationController
   skip_before_action :authenticate_user!
@@ -53,32 +54,33 @@ class SearchesController < ApplicationController
   def set_vars_from_params
     # @query [ "123", "1231", "123" ] is an array that stores the ids we need to use to call the api
     @query = user_params[:search][:queries].strip.split("&")
-    if @query.count > 1 && (actor_ids = Tmdb.matching_cast(@query))
-      if actor_ids.count == 1
-        # if we have 2 movie inputs and one matching actor
-        redirect_to result_path(Result.create(json: actor_ids.first))
-      elsif actor_ids.count > 1
-        # if we have 2 movie inputs and several matching actors they
-        # will be displayed on the preresults page
-        cast = []
-        actor_ids.each do |actor_id|
-          cast << Result.create(json: Tmdb.get_actor_details(actor_id))
-        end
-        movies = Tmdb.get_movie_details(@query)
-        @results = { cast: cast, movies: movies }
-      else
-        cast = Tmdb.get_actors(@query.last.to_i)
-        movies = Tmdb.get_movie_details(@query)
-        @results = { cast: cast, movies: movies }
-      end
 
+    if @query.count > 1 && (actor_ids = Tmdb.matching_cast(@query)) && actor_ids.count == 1
+      # if we have 2 movie inputs and one matching actor
+      redirect_to result_path(Result.create(json: actor_ids.first))
+    elsif @query.count > 1 && (actor_ids = Tmdb.matching_cast(@query)) && actor_ids.count > 1
+      # if we have 2 movie inputs and several matching actors
+      cast = actor_ids.map { |actor_id| Result.create(json: Tmdb.get_actor_details(actor_id)) }
+      @common_actors = true
     else
       # if there is only 1 movie input or no matching actors display preresults page
       cast = Tmdb.get_actors(@query.last.to_i)
-      movies = Tmdb.get_movie_details(@query)
-      @results = { cast: cast, movies: movies }
+      @common_actors = false
     end
+
+    movies = Tmdb.get_movie_details(@query)
+    @results = { cast: cast, movies: movies }
+    @recommendations = movie_recommendations(movies.last)
     # @results = search_results(params[:search][:queries])
+  end
+
+  def movie_recommendations(movie)
+    recos = MovieRecommendation.get_movie_names(movie)
+    if recos["ERROR"]
+      nil
+    else
+      Tmdb.movie_details_recom(recos)
+    end
   end
 
   def full_query
