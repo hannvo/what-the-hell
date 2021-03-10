@@ -4,36 +4,34 @@
         <% if @query.empty? %>
             <!-- if there isn't any search in the parameters -->
             <%= render "shared/text/main_title" %>
-           <div> <%= render "shared/forms/movie_input" %>
-            <%= render "shared/forms/image_upload" %></div>
+            
+            <div> 
+                <%= render "shared/forms/movie_input" %>
+                <%= render "shared/forms/image_upload" %></div>
 
 
-            <p class="tag-line">
-                Write down a movie name or upload an actor's picture and we'll find their name for you !
-            </p>
+                <p class="tag-line">
+                    Write down a movie name or upload an actor's picture and we'll find their name for you !
+                </p>
 
         <% else %>
-            <!-- if there already has been movie input -->
-            <%= render "shared/cards/movie_cards" %>
-<div>
-            <% if @results[:movies].count == 2 %>
-               <% if @common_actors %>
-               <p class="explanation-sub">Here are the actors who have played in your selected movies</p></div>
-            <% else %>
-               <p class="explanation-sub">There is no commun actor in those two movies, but we have found for you the top actors in <%= @results[:movies].last[:title] %></p></div>
-            <% end %>
-            <% else %>
-                <%= render "shared/forms/movie_input" %>
-            <% end %>
-            <%= render "shared/cards/cast_cards" %>
-            <% if @recommendations %>
-              <%= render "shared/cards/movie_reco" %>
-            <% end %>
+                    <!-- if there already has been movie input -->
+                    <%= render "shared/cards/movie_cards" %>
+            <div>
+            
+                    <%= render 'shared/forms/movie_input' %>
+                    
+                    <div id="cast-section">
+                        <%# render loading animation here %>
+                        <%= render 'shared/navigation/cast_loading' %>
+                    </div>
+
+            <%= render "shared/cards/movie_reco" if @recommendations %>
 
         <% end %>
     </div>
 
     <% if @query.empty? %>
-    <div class="cover"></div>
+        <div class="cover"></div>
     <% end %>
 </div>
