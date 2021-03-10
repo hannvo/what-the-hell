@@ -73,9 +73,8 @@ class Tmdb
   def self.search_actor_name(query)
     query = URI.encode(query)
     url = "https://api.themoviedb.org/3/search/person?api_key=#{@api_key}&language=en-US&query=#{query}&page=1&include_adult=false"
-    JSON.parse(
-      URI.parse(url).read
-    )['results'][0].to_json
+    actor_id = JSON.parse(URI.parse(url).read)['results'][0]['id']
+    self.get_actor_details(actor_id)
   end
 
   def self.movie_details_recom(hash_with_movie_names)
