@@ -23,7 +23,7 @@ import "bootstrap";
 // Internal imports, e.g:
 import "controllers";
 import { initAutocomplete } from "../plugins/autocomplete";
-import { initFaceRecognitionCable } from "../plugins/face_recognition_channel";
+import { initFaceRecognitionCable } from "../channels/face_recognition_channel";
 
 document.addEventListener("turbolinks:load", () => {
   // Call your functions here, e.g:

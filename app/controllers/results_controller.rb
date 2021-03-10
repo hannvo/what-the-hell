@@ -4,6 +4,6 @@ class ResultsController < ApplicationController
   def show
     @res = Result.find(params[:id])
     @result = @res.details unless @res.json.nil?
-    FaceRecognition.call(@res.searches.first.photo.key)
+    FaceRecognition.call(@res)
   end
 end

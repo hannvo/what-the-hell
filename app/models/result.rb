@@ -6,6 +6,10 @@ class Result < ApplicationRecord
     JSON.parse(json)
   end
 
+  def photo_key
+    searches.first.photo.key
+  end
+
   private
 
   def async_update

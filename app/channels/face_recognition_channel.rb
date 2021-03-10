@@ -1,7 +1,6 @@
 class FaceRecognitionChannel < ApplicationCable::Channel
   def subscribed
-    client = params[:client]
-    stream_for client
+    stream_from "FaceRecognition_result_#{params[:client]}"
   end
 
   def unsubscribed

@@ -1,18 +1,28 @@
 import { Controller } from "stimulus";
 import Typed from "typed.js";
+import consumer from "../channels/consumer";
 
 export default class extends Controller {
   static targets = ["loadingScreen"];
 
   connect() {
-    console.log("here");
     this.loadingScreenTarget.classList.remove("hidden");
+    const loaderController = this;
     typeLoadingText();
+    //initSubscription(cableId);
   }
 }
 
-const initLoadingScreen = () => {
-  const loadingScreen = document.getElementById("loading-screen");
+const initSubscription = () => {
+  cableId = parseInt(this.loadingScreenTarget.dataset.cableId);
+  consumer.subscriptions.create(
+    { channel: "FaceRecognitionChannel", client: cableId },
+    {
+      received(data) {
+        console.log(data); // called when data is broadcast in the cable
+      },
+    }
+  );
 };
 
 const typeLoadingText = () => {
