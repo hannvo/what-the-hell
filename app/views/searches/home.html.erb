@@ -17,7 +17,7 @@
             <%= render "shared/cards/movie_cards" %>
 <div>
             <% if @results[:movies].count == 2 %>
-               <% if @common_actors %> 
+               <% if @common_actors %>
                <p class="explanation-sub">Here are the actors who have played in your selected movies</p></div>
             <% else %>
                <p class="explanation-sub">There is no commun actor in those two movies, but we have found for you the top 4 actors in <%= @results[:movies].last[:title] %></p></div>
@@ -26,8 +26,9 @@
                 <%= render "shared/forms/movie_input" %>
             <% end %>
             <%= render "shared/cards/cast_cards" %>
-            <%= render "shared/cards/movie_reco" %>
-           
+            <% if @recommendations %>
+              <%= render "shared/cards/movie_reco" %>
+            <% end %>
 
         <% end %>
     </div>

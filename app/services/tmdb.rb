@@ -77,4 +77,20 @@ class Tmdb
       URI.parse(url).read
     )['results'][0].to_json
   end
+
+  def self.movie_details_recom(hash_with_movie_names)
+    movies = []
+    hash_with_movie_names.first(3).each do |_key, movie|
+      url = "https://api.themoviedb.org/3/search/movie?api_key=#{@api_key}&query=#{movie}"
+      response = URI.parse(url).read
+      movie_details = JSON.parse(response)['results'].first
+      movies << {
+        title: movie_details["title"],
+        img_path: movie_details["poster_path"],
+        description: movie_details["overview"],
+        year: movie_details["release_date"]
+      }
+    end
+    movies
+  end
 end
