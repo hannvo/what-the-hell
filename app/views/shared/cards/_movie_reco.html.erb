@@ -3,8 +3,8 @@
       <p>If you don't, you probably have to ! We have picked for you this 3 movies based on your search 🙌</p>
   <% @recommendations.each do |movie| %>
     <% if movie[:img_path] %>
-        <img id="reco-poster" src=<%= "https://image.tmdb.org/t/p/w200/#{movie[:img_path]}" %> >
-        <p clqss="synopsis" hidden> <% @result[:description] %></p>
+       <div class="reco-poster"> <img src=<%= "https://image.tmdb.org/t/p/w200/#{movie[:img_path]}" %> >
+        <p class="synopsis" hidden> <%= movie[:description] %></p></div>
     <% else %>
         <%= image_tag "placeholder.jpg", alt: "" %>
      <% end %>
