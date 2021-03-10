@@ -70,6 +70,14 @@ class Tmdb
     "{\"adult\":\"\",\"also_known_as\":\"\",\"biography\":\"\",\"birthday\":\"\",\"deathday\":\"\",\"gender\":\"\",\"homepage\":\"\",\"id\":\"\",\"imdb_id\":\"\",\"known_for_department\":\"\",\"name\":\"NOT FOUND\",\"place_of_birth\":\"\",\"popularity\":\"\",\"profile_path\":\"\"}"
   end
 
+  def self.search_actor_name(query)
+    query = URI.encode(query)
+    url = "https://api.themoviedb.org/3/search/person?api_key=#{@api_key}&language=en-US&query=#{query}&page=1&include_adult=false"
+    JSON.parse(
+      URI.parse(url).read
+    )['results'][0].to_json
+  end
+
   def self.movie_details_recom(hash_with_movie_names)
     movies = []
     hash_with_movie_names.first(3).each do |_key, movie|
