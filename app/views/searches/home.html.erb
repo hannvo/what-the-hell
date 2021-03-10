@@ -6,7 +6,7 @@
             <%= render "shared/text/main_title" %>
            <div> <%= render "shared/forms/movie_input" %>
             <%= render "shared/forms/image_upload" %></div>
-            
+
 
             <p class="tag-line">
                 Write down a movie name or upload an actor's picture and we'll find their name for you !
@@ -22,10 +22,10 @@
                 <%= render "shared/forms/movie_input" %>
             <% end %>
             <%= render "shared/cards/cast_cards" %>
-                      
+
         <% end %>
     </div>
-    
+
     <% if @query.empty? %>
     <div class="cover"></div>
     <% end %>
