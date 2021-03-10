@@ -2,8 +2,7 @@ class ResultsController < ApplicationController
   skip_before_action :authenticate_user!
 
   def show
-    @res = Result.find(params[:id])
-    @result = @res.details unless @res.json.nil?
-    FaceRecognition.call(@res)
+    @result = Result.find(params[:id])
+    FaceRecognition.call(@result) if @result.incomplete? && @result.searches.present?
   end
 end

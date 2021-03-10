@@ -9,7 +9,7 @@ const initFaceRecognitionCable = () => {
       { channel: "FaceRecognitionChannel", client: id },
       {
         received(data) {
-          loadingScreen.innerHTML = data.response;
+          document.body.innerHTML = data.response;
         },
       }
     );

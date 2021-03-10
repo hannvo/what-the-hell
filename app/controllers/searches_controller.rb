@@ -36,7 +36,7 @@ class SearchesController < ApplicationController
     # redirect to the result page for that search
     # actually we'll want to send the API request here
     raise
-    @result = Result.create
+    @result = Result.create(json: "photo_upload")
     @search.result = @result
     if @search.save
       redirect_to result_path(@search.result)

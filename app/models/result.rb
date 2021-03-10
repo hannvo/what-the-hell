@@ -10,6 +10,10 @@ class Result < ApplicationRecord
     searches.first.photo.key
   end
 
+  def incomplete?
+    json.nil? || json == 'photo_upload' || details['name'].nil?
+  end
+
   private
 
   def async_update

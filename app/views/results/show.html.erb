@@ -1,5 +1,11 @@
-<%# render loading screen on show, content injected later through %>
-<%# a partial in shared/views/final_result when data is ready %>
-<%= render 'shared/views/processing_loader' %>
+<% if @result.incomplete? %>
+    <%# render loading screen on show, content injected later through %>
+    <%# a partial in shared/views/final_result when data is ready %>
+    <%= render 'shared/views/processing_loader' %>
 
+<% else %>
+    <%# render the final result view %>
+    <%= render 'shared/views/final_result' %>
+    
+<% end %>
 
