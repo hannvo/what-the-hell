@@ -1,0 +1,12 @@
+<div>
+    <% if @queries.count == 2 %>
+        <% if @common_actors %>
+            <p class="explanation-sub">Here are the actors who have played in your selected movies</p></div>
+        <% else %>
+            <p class="explanation-sub">There is no commun actor in those two movies, but we have found for you the top actors in <%= @queries.last %></p></div>
+        <% end %>
+    <% end %>
+    
+    <%= render "shared/cards/cast_cards" %>
+    
+</div>
