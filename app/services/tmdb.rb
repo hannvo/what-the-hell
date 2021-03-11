@@ -39,6 +39,8 @@ class Tmdb
     first_movie_id = array_of_movie_ids.first
     first_movie_actors_ids = api_call_for_actors(first_movie_id.to_i).map { |actor| actor["id"] }
 
+    return first_movie_actors_ids if array_of_movie_ids.one?
+
     second_movie_id = array_of_movie_ids[1]
     second_movie_actors_ids = api_call_for_actors(second_movie_id.to_i).map { |actor| actor["id"] }
 

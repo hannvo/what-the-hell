@@ -9,7 +9,11 @@ const initCastCable = () => {
       { channel: "CastChannel", client: id },
       {
         received(data) {
-          actorCards.insertAdjacentHTML("beforeend", data.response);
+          if (data.response["result"]) {
+            window.location.replace(`/results/${data.response["actor"]["id"]}`);
+          } else {
+            actorCards.insertAdjacentHTML("beforeend", data.response);
+          }
         },
       }
     );
