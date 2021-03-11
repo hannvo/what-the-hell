@@ -2,33 +2,38 @@ class CastMatcherJob < ApplicationJob
   queue_as :default
 
   def perform(query)
-    sleep 5
+    # sleep 0.5
     @query = query
-    if query.count > 1 && (actor_ids = Tmdb.matching_cast(query)) && actor_ids.count > 1
+    actor_ids = Tmdb.matching_cast(@query)
+    if @query.count > 1 && actor_ids.one?
+      # if we have 2 movie inputs and one matching actor
+      broadcast_final(Result.create(json: actor_ids.first))
+    elsif query.count > 1 && actor_ids.count > 1
       # if we have 2 movie inputs and several matching actors
       actor_ids.map { |actor_id| Result.create(json: Tmdb.get_actor_details(actor_id)) }
-               .each { |actor| broadcast_actor(actor) }
+               .each { |actor| broadcast(actor) }
     else
       # if there is only 1 movie input or no matching actors display preresults page
-      Tmdb.get_actors(query.last.to_i).each { |actor| broadcast_actor(actor) }
+      Tmdb.get_actors(query.last.to_i).each { |actor| broadcast(actor) }
     end
   end
 
   private
 
-  def render_response(partial, locals)
-    ApplicationController.renderer.render_to_string(
-      partial: partial,
-      locals: { query: @query }.merge(locals)
+  def broadcast_final(actor)
+    BroadcastJob.perform_now(
+      { channel: "CastMatcher",
+        query: @query,
+        response: { result: true, actor: actor } }
     )
   end
 
-  def broadcast(response)
-    ActionCable.server.broadcast("CastMatcher_result_#{@query.join('&')}", { response: response })
-  end
-
-  def broadcast_actor(actor)
-    response = render_response("shared/cards/actor_card", { actor: actor })
-    broadcast(response)
+  def broadcast(actor)
+    BroadcastJob.perform_now(
+      { channel: "CastMatcher",
+        query: @query,
+        partial: "shared/cards/actor_card",
+        locals: { actor: actor } }
+    )
   end
 end

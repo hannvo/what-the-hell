@@ -6,6 +6,7 @@ class BroadcastJob < ApplicationJob
     @query = attributes[:query]
     @partial = attributes[:partial]
     @locals = attributes[:locals]
+    @response = attributes[:response]
     broadcast
   end
 
@@ -19,6 +20,6 @@ class BroadcastJob < ApplicationJob
   end
 
   def broadcast
-    ActionCable.server.broadcast("#{@channel}_result_#{@query.join('&')}", { response: render_response })
+    ActionCable.server.broadcast("#{@channel}_result_#{@query.join('&')}", { response: @response || render_response })
   end
 end
