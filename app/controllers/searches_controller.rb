@@ -83,7 +83,7 @@ class SearchesController < ApplicationController
 
     @movies = Tmdb.get_movie_details(@query)
     CastMatcherJob.perform_later(@query)
-    @recommendations = movie_recommendations(@movies.last)
+    #@recommendations = movie_recommendations(@movies.last)
     # @results = search_results(params[:search][:queries])
   end
 

@@ -1,16 +1,17 @@
 import consumer from "./consumer";
 
 const initCastCable = () => {
-  const castLoading = document.getElementById("cast-loading");
-  if (castLoading) {
-    const id = castLoading.dataset.cableId;
+  const castSection = document.getElementById("cast-section");
+  if (castSection) {
+    const actorCards = document.getElementById("actor-cards");
+    //const castLoading = document.getElementById("cast-loading");
+    const id = castSection.dataset.cableId;
     console.log(id);
     consumer.subscriptions.create(
-      { channel: "FaceRecognitionChannel", client: id },
+      { channel: "CastChannel", client: id },
       {
         received(data) {
-          document.body.innerHTML = data.response;
-          initBiographyExpand();
+          actorCards.insertAdjacentHTML("beforeend", data.response);
         },
       }
     );

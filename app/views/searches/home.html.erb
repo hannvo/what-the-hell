@@ -7,7 +7,8 @@
             
             <div> 
                 <%= render "shared/forms/movie_input" %>
-                <%= render "shared/forms/image_upload" %></div>
+                <%= render "shared/forms/image_upload" %>
+            </div>
 
 
                 <p class="tag-line">
@@ -17,13 +18,11 @@
         <% else %>
                     <!-- if there already has been movie input -->
                     <%= render "shared/cards/movie_cards" %>
-            <div>
             
                     <%= render 'shared/forms/movie_input' %>
                     
-                    <div id="cast-section">
-                        <%# render loading animation here %>
-                        <%= render 'shared/navigation/cast_loading' %>
+                    <div id="cast-section" data-cable-id="<%= params[:search][:queries] %>">
+                        <%= render 'shared/cards/cast_cards' %>
                     </div>
 
             <%= render "shared/cards/movie_reco" if @recommendations %>
@@ -34,4 +33,5 @@
     <% if @query.empty? %>
         <div class="cover"></div>
     <% end %>
+
 </div>
