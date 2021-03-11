@@ -1,4 +1,5 @@
-<%= text_field_tag 'movie-input', nil, placeholder: 'Type a movie...', autocomplete: 'off' %>
+<% placeholder = @query.any? ? "Type another movie..." : 'Type a movie...' %>
+<%= text_field_tag 'movie-input', nil, placeholder: placeholder, autocomplete: 'off' %>
 
 <%= simple_form_for @search, url: searches_path(queries: @query.join('&')) do |f| %>
     <%= f.hidden_field :query, label: false %>

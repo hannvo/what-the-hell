@@ -23,7 +23,10 @@ import "bootstrap";
 // Internal imports, e.g:
 import "controllers";
 import { initAutocomplete } from "../plugins/autocomplete";
+import { initMovieCable } from "../channels/movie_info_channel";
 import { initFaceRecognitionCable } from "../channels/face_recognition_channel";
+import { initMovieRecommendationCable } from "../channels/movie_recommendation_channel";
+import { initCastCable } from "../channels/cast_channel";
 import { initSlider } from "../plugins/swipe_slider";
 import { initBiographyExpand } from "../plugins/biography_expand";
 import { initSynopsisShow } from "../plugins/synopsis_show";
@@ -31,8 +34,11 @@ import { initSynopsisShow } from "../plugins/synopsis_show";
 document.addEventListener("turbolinks:load", () => {
   // Call your functions here, e.g:
   // initSelect2();
+  initMovieCable();
   initAutocomplete();
   initFaceRecognitionCable();
+  initCastCable();
+  initMovieRecommendationCable();
   // initSlider();
   initBiographyExpand();
   initSynopsisShow();
