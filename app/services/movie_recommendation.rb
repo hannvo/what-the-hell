@@ -1,9 +1,6 @@
 require "open-uri"
-class MovieRecommendation
-  def initialize
-    @hello = "hi"
-  end
 
+class MovieRecommendation
   def self.get_movie_names(movie)
     movie_url = "https://actorrecognition-tdevy3cs7a-ew.a.run.app/movie_recommender?movie=#{movie[:title]}"
 

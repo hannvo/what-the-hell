@@ -27,7 +27,9 @@
                         <%= render 'shared/cards/cast_cards' %>
                     </div>
 
-            <%= render "shared/cards/movie_reco" if @recommendations %>
+                    <div id="movie-recommendation-section" data-cable-id="<%= params[:search][:queries] %>">
+                    <%# content will be injected through websocket %>
+                    </div>
 
         <% end %>
     </div>

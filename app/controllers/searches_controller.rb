@@ -1,5 +1,5 @@
-require_relative "../services/tmdb.rb"
-require_relative "../services/movie_recommendation"
+#require_relative "../services/tmdb.rb"
+#require_relative "../services/movie_recommendation"
 
 class SearchesController < ApplicationController
   skip_before_action :authenticate_user!
@@ -81,20 +81,9 @@ class SearchesController < ApplicationController
       redirect_to result_path(Result.create(json: actor_ids.first))
     end
 
-    # @movies = Tmdb.get_movie_details(@query)
     MovieInfoJob.perform_later(@query)
     CastMatcherJob.perform_later(@query)
-    #@recommendations = movie_recommendations(@movies.last)
-    # @results = search_results(params[:search][:queries])
-  end
-
-  def movie_recommendations(movie)
-    recos = MovieRecommendation.get_movie_names(movie)
-    if recos["ERROR"]
-      nil
-    else
-      Tmdb.movie_details_recom(recos)
-    end
+    # MovieRecommendationJob is called from MovieInfoJob
   end
 
   def search_results(query)

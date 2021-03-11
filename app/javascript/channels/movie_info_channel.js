@@ -5,7 +5,6 @@ const initMovieCable = () => {
   if (movieCardSection) {
     const movieCards = document.getElementById("movie-cards");
     const id = movieCardSection.dataset.cableId;
-    console.log(id);
     consumer.subscriptions.create(
       { channel: "MovieInfoChannel", client: id },
       {

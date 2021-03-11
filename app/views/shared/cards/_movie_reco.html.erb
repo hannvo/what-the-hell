@@ -1,7 +1,7 @@
 <div class="reco-container">
-   <H2>HAVE YOU SEEN THIS ?</H2>
-      <p>If you don't, you probably have to ! We have picked for you this 3 movies based on your search 🙌</p>
-  <% @recommendations.each do |movie| %>
+   <H2>HAVE YOU WATCHED THESE YET?</H2>
+      <p>If you liked <%= base_movie[:title] %>, you might also love these movies we hand-picked for you:</p>
+  <% recommendations.each do |movie| %>
     <% if movie[:img_path] %>
          <img class="reco-poster" src=<%= "https://image.tmdb.org/t/p/w200/#{movie[:img_path]}" %> >
     <% else %>
