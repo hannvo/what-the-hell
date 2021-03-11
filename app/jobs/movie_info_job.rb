@@ -2,7 +2,7 @@ class MovieInfoJob < ApplicationJob
   queue_as :default
 
   def perform(query)
-    sleep 0.3
+    sleep 0.5
     @query = query
     movies = Tmdb.get_movie_details(query)
     movies.each do |movie|
