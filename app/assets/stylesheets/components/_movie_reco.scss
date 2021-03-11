@@ -15,10 +15,31 @@
     justify-content: space-between;
   }
 
-  img {
-    width: 83px;
+  .reco-poster {
+    width: 31%;
     border-radius: 4px;
     border: 1px solid white;
+    cursor: pointer;
+    img {
+      width: 100%;
+      border-radius: 4px;
+    }
+  }
+
+  .reco-movie-details {
+    margin-top: 12px;
+    font-size: 14px;
+    font-weight: 300;
+    #reco-movie-title {
+      font-size: 16px;
+      font-weight: 400;
+    }
+    .movie-rec-year {
+      font-size: 14px;
+    }
+    p {
+      margin: 0;
+    }
   }
 
   h2 {
