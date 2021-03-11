@@ -2,6 +2,7 @@ class CastMatcherJob < ApplicationJob
   queue_as :default
 
   def perform(query)
+    sleep 0.5
     @query = query
     if query.count > 1 && (actor_ids = Tmdb.matching_cast(query)) && actor_ids.count > 1
       # if we have 2 movie inputs and several matching actors
