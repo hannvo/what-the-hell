@@ -1,3 +1,12 @@
+const removeGradient = (event) => {
+  const actorName = document.getElementById("result-actor-name");
+  if (window.scrollY < 670) {
+    actorName.classList.remove("actor-name-gradient");
+  } else {
+    actorName.classList.add("actor-name-gradient");
+  }
+}
+
 const expand = (event) => {
   // take the read more btn away
   event.currentTarget.remove();
@@ -11,7 +20,11 @@ const expand = (event) => {
   bio.insertAdjacentHTML('afterend', "<p class='btn-close-bio'>Show less</p>");
   const showLess = document.querySelector('.btn-close-bio');
   showLess.addEventListener('click', close);
-
+  // put gradient under actorname
+  const actorName = document.getElementById("result-actor-name");
+  actorName.classList.add("actor-name-gradient");
+  console.log(window.scrollY);
+  window.addEventListener('scroll', removeGradient);
 }
 
 const close = (event) => {
@@ -27,6 +40,9 @@ const close = (event) => {
   // turn gradient on
   const gradient = document.getElementById('bio-gradient');
   gradient.classList.add("bio-gradient");
+  // remove gradient under actorname
+  const actorName = document.getElementById("result-actor-name");
+  actorName.classList.remove("actor-name-gradient");
 }
 
 const initBiographyExpand = () => {

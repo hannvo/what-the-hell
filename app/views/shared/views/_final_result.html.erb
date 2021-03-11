@@ -2,18 +2,17 @@
     <% @result = @result.nil? ? result.details : @result.details %>
     <%= render "shared/cards/final_result_card" %>
 
-    <div class="result-wrapper result-content">
-      <div>
-          <div class="actor-name" >
-              <h1><%= @result["name"] %></h1>
-          </div>
 
+    <div class="actor-name" id="result-actor-name" >
+        <h1><%= @result["name"] %></h1>
+    </div>
+
+    <div class="result-wrapper">
 
           <div class="actor-details" data-results-target="details">
               <p id="biography"> <%= @result["biography"] %></p>
               <div id="bio-gradient" class=""></div>
           </div>
-      </div>
-      <%= render "shared/navigation/footer" %>
     </div>
+    <%= render 'shared/navigation/footer' %>
 </div>

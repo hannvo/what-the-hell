@@ -2,10 +2,11 @@ class MovieRecommendationJob < ApplicationJob
   queue_as :default
 
   def perform(movie, query)
+    sleep 5
     recommendations = MovieRecommendation.get_movie_names(movie)
     return if recommendations["ERROR"]
 
-    sleep 0.25
+    sleep 0.5
     BroadcastJob.perform_now(
       { channel: "MovieRecommendation",
         query: query,
