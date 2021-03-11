@@ -1,6 +1,6 @@
 <div class="background-gradient">
 
-    <div class="container container-home-page scroll-container">
+    <div class="container container-home-page">
         <% if @query.empty? %>
             <!-- if there isn't any search in the parameters -->
             <%= render "shared/text/main_title" %>
@@ -30,6 +30,10 @@
                     <div id="movie-recommendation-section" data-cable-id="<%= params[:search][:queries] %>">
                     <%# content will be injected through websocket %>
                     </div>
+
+            <% if @query.count > 1 %>
+              <%= render 'shared/navigation/footer' %>
+            <% end %>
 
         <% end %>
     </div>

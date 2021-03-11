@@ -1,0 +1,5 @@
+meta_product_name: "What the hell is this actor's name?"
+meta_title: "What the hell is this actor's name? - We will jog your memory!"
+meta_description: "Write down a movie name or upload an actor's picture and we'll find the name of the actor you are searching for!"
+meta_image: "meta_image.jpg" # should exist in `app/assets/images/`
+# twitter_account: "@product_twitter_account"   # required for Twitter Cards
