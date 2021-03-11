@@ -17,7 +17,9 @@
 
         <% else %>
                     <!-- if there already has been movie input -->
-                    <%= render "shared/cards/movie_cards" %>
+                    <div id="movie-card-section" data-cable-id="<%= params[:search][:queries] %>">
+                        <%= render "shared/cards/movie_cards" %>
+                    </div>
             
                     <%= render 'shared/forms/movie_input' %>
                     

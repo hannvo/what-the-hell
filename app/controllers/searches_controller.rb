@@ -81,7 +81,8 @@ class SearchesController < ApplicationController
       redirect_to result_path(Result.create(json: actor_ids.first))
     end
 
-    @movies = Tmdb.get_movie_details(@query)
+    # @movies = Tmdb.get_movie_details(@query)
+    MovieInfoJob.perform_later(@query)
     CastMatcherJob.perform_later(@query)
     #@recommendations = movie_recommendations(@movies.last)
     # @results = search_results(params[:search][:queries])
