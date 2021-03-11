@@ -54,12 +54,13 @@
   color: $light-gray;
   font-weight: bold;
   text-shadow: 0.05em 0.05em black;
-  margin-bottom: 32px;
-  margin-top: -80px;
+  padding-bottom: 45px;
+  margin-top: -100px;
   margin-left: 32px;
   position: -webkit-sticky;
   position: sticky;
-  top: 16px;
+  top: 0;
+  padding-top: 16px;
 }
 
 .actor-details {
@@ -67,11 +68,16 @@
   padding-top: 90px;
 }
 
+.actor-name-gradient {
+  background-image: linear-gradient($yellow 60%, rgba(255, 255, 255, 0));
+  z-index: 3;
+}
+
 .result-wrapper {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  height: 90vh;
+  min-height: 90vh;
   padding: 24px 32px 0;
 }
 
