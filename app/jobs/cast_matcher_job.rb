@@ -2,7 +2,7 @@ class CastMatcherJob < ApplicationJob
   queue_as :default
 
   def perform(query)
-    # sleep 0.5
+    sleep 0.5
     @query = query
     actor_ids = Tmdb.matching_cast(@query)
     if @query.count > 1 && actor_ids.one?
