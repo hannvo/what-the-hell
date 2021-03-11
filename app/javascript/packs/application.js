@@ -29,7 +29,6 @@ import { initMovieRecommendationCable } from "../channels/movie_recommendation_c
 import { initCastCable } from "../channels/cast_channel";
 import { initSlider } from "../plugins/swipe_slider";
 import { initBiographyExpand } from "../plugins/biography_expand";
-import { initSynopsisShow } from "../plugins/synopsis_show";
 import { initScrollFast } from "../plugins/scroll_fast";
 
 
@@ -43,7 +42,6 @@ document.addEventListener("turbolinks:load", () => {
   initMovieRecommendationCable();
   // initSlider();
   initBiographyExpand();
-  initSynopsisShow();
   initScrollFast();
 
 });

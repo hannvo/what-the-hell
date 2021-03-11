@@ -1,4 +1,5 @@
 import consumer from "./consumer";
+import { initSynopsisShow } from "../plugins/synopsis_show";
 
 const initMovieRecommendationCable = () => {
   const movieRecommendationSection = document.getElementById(
@@ -14,6 +15,7 @@ const initMovieRecommendationCable = () => {
             "beforeend",
             data.response
           );
+          initSynopsisShow();
         },
       }
     );
