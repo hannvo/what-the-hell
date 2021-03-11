@@ -55,25 +55,24 @@
   font-weight: bold;
   text-shadow: 0.05em 0.05em black;
   margin-bottom: 32px;
+  margin-top: -80px;
+  margin-left: 32px;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 16px;
 }
 
 .actor-details {
   position: relative;
+  padding-top: 90px;
 }
 
 .result-wrapper {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  height: 100vh;
+  height: 90vh;
   padding: 24px 32px 0;
-}
-
-.result-content {
-  margin-top: -100px;
-  position: -webkit-sticky;
-  position: sticky;
-  top: 0;
 }
 
 .footer-home-nav {
