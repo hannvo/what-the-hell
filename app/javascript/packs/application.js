@@ -29,6 +29,7 @@ import { initMovieRecommendationCable } from "../channels/movie_recommendation_c
 import { initCastCable } from "../channels/cast_channel";
 import { initSlider } from "../plugins/swipe_slider";
 import { initBiographyExpand } from "../plugins/biography_expand";
+import { initScrollFast } from "../plugins/scroll_fast";
 
 document.addEventListener("turbolinks:load", () => {
   // Call your functions here, e.g:
@@ -40,4 +41,5 @@ document.addEventListener("turbolinks:load", () => {
   initMovieRecommendationCable();
   // initSlider();
   initBiographyExpand();
+  initScrollFast();
 });
