@@ -7,11 +7,10 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= favicon_link_tag 'apple-icon-180x180.png', rel: 'apple-touch-icon', type: 'image/png' %>
-    <%= favicon_link_tag 'favicon-32x32.png', type: 'image/png' %>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload', defer: true %>
+    <%= stylesheet_link_tag "application", media: "all", 'data-turbolinks-track': "reload" %>
+    <%= javascript_pack_tag "application", 'data-turbolinks-track': "reload", defer: true %>
+    <link rel="manifest" href="<%= asset_path "manifest.json" %>">
 
     <!-- Facebook Open Graph data -->
     <meta property="og:title" content="<%= meta_title %>" />
@@ -28,10 +27,16 @@
     <meta name="twitter:description" content="<%= meta_description %>">
     <meta name="twitter:creator" content="<%= DEFAULT_META["twitter_account"] %>">
     <meta name="twitter:image:src" content="<%= meta_image %>">
+
+      <!--Web App Capable -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+
+    <%= render "shared/ios_favicon" %>
   </head>
 
   <body>
-    <%= render 'shared/navigation/flashes' %>
+    <%= render "shared/navigation/flashes" %>
 
     <%= yield %>
   </body>
