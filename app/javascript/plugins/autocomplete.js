@@ -52,21 +52,31 @@ const insertMovies = (data) => {
   });
 };
 
+const toggleElements = (input, suggestions, element) => {
+  input.addEventListener("focus", (event) => {
+    element.style.display = "none";
+  });
+  // if the input field loses focus and there are no movie suggestions on screen, restore the title
+  input.addEventListener("blur", (event) => {
+    if (suggestions.innerText == "") {
+      element.style.display = "block";
+    }
+  });
+};
+
 const initAutocomplete = () => {
   const movieInput = document.getElementById("movie-input");
   const movieSuggestions = document.getElementById("movie-suggestions");
   const mainTitle = document.getElementsByClassName("main-title")[0];
+  const movieCards = document.getElementById("movie-card-section");
   // added check for the presence of the element to suppress errors on views without the movie input
   if (movieInput) {
     if (mainTitle) {
-      movieInput.addEventListener("focus", (event) => {
-        mainTitle.style.display = "none";
-      });
-      movieInput.addEventListener("blur", (event) => {
-        if (movieSuggestions.innerText == "") {
-          mainTitle.style.display = "block";
-        }
-      });
+      // add eventlistener to hide main title on input focus if it is present and restore it if needed
+      toggleElements(movieInput, movieSuggestions, mainTitle);
+    } else if (movieCards) {
+      // hide and restore movie cards as needed
+      toggleElements(movieInput, movieSuggestions, movieCards);
     }
     movieInput.addEventListener("keyup", (event) => {
       movieSuggestions.innerHTML = "";
