@@ -3,7 +3,6 @@ class MovieInfoJob < ApplicationJob
 
   def perform(query)
     sleep 0.5
-    @query = query
     movies = Tmdb.get_movie_details(query)
     movies.each do |movie|
       BroadcastJob.perform_now(

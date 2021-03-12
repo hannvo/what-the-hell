@@ -22,8 +22,13 @@
                     </div>
             
                     <%= render 'shared/forms/movie_input' %>
+
+                    <div id="cast-subtitle-section">
+                        <h2>Gathering your results...</h2>
+                    </div>
                     
                     <div id="cast-section" data-cable-id="<%= params[:search][:queries] %>">
+                        <%= render 'shared/navigation/cast_loading' %>
                         <%= render 'shared/cards/cast_cards' %>
                     </div>
 

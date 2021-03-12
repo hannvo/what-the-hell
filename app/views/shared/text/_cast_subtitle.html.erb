@@ -1,0 +1,15 @@
+<div class="subheading">
+<%# is passed a parameter common_actors %>
+<%# common_actors can be true || false || 'single-movie' %>
+    <% if common_actors == 'single-movie' %>
+        <h2>Here is the top cast:</h2>
+    
+    <% elsif common_actors %>
+        <h2>Yay we found some matches!</h2>
+    
+    <% else %>
+        <h2>No matches found :(</h2>
+    
+    <% end %>
+    
+</div>
