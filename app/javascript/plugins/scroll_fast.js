@@ -1,8 +1,10 @@
 export { initScrollFast };
 
 const scrollToBio = (event) => {
+  const bio = document.getElementById('biography');
+  const bioPosition = bio.scrollTop
   if (window.scrollY < 670) {
-    window.scrollTo({ top: 679, left: 0, behavior: "smooth" });
+    bio.scrollIntoView();
   } else {
     window.removeEventListener("scroll", scrollToBio);
   }

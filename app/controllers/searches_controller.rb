@@ -76,11 +76,6 @@ class SearchesController < ApplicationController
   def set_vars_from_params
     # @query [ "123", "1231", "123" ] is an array that stores the ids we need to use to call the api
     @query = user_params[:search][:queries].strip.split("&")
-    if @query.count > 1 && (actor_ids = Tmdb.matching_cast(@query)) && actor_ids.count == 1
-      # if we have 2 movie inputs and one matching actor
-      redirect_to result_path(Result.create(json: actor_ids.first))
-    end
-
     MovieInfoJob.perform_later(@query)
     CastMatcherJob.perform_later(@query)
     # MovieRecommendationJob is called from MovieInfoJob

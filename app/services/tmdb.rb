@@ -36,8 +36,11 @@ class Tmdb
   def self.matching_cast(array_of_movie_ids)
     # get cast to have 2 arrays with [ actor, actor, actr, ...]
     # arr-o-m-i ["1232", '1232']
+    array_of_movie_ids = array_of_movie_ids.last(2)
     first_movie_id = array_of_movie_ids.first
     first_movie_actors_ids = api_call_for_actors(first_movie_id.to_i).map { |actor| actor["id"] }
+
+    return first_movie_actors_ids if array_of_movie_ids.one?
 
     second_movie_id = array_of_movie_ids[1]
     second_movie_actors_ids = api_call_for_actors(second_movie_id.to_i).map { |actor| actor["id"] }
