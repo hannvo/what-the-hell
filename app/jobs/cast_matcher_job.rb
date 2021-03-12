@@ -10,15 +10,27 @@ class CastMatcherJob < ApplicationJob
       broadcast_final(Result.create(json: actor_ids.first))
     elsif query.count > 1 && actor_ids.count > 1
       # if we have 2 movie inputs and several matching actors
+      broadcast_subtitle(common_actors: true)
       actor_ids.map { |actor_id| Result.create(json: Tmdb.get_actor_details(actor_id)) }
                .each { |actor| broadcast(actor) }
     else
       # if there is only 1 movie input or no matching actors display preresults page
+      broadcast_subtitle({ common_actors: 'single-movie' }, common_actors: (@query.one? ? true : 'single-movie'))
       Tmdb.get_actors(query.last.to_i).each { |actor| broadcast(actor) }
     end
   end
 
   private
+
+  def broadcast_subtitle(attr_hash, common_actors: true)
+    BroadcastJob.perform_now(
+      { channel: "CastMatcher",
+        query: @query,
+        partial: "shared/text/cast_subtitle",
+        attr: attr_hash,
+        locals: { subtitle: true, common_actors: common_actors } }
+    )
+  end
 
   def broadcast_final(actor)
     BroadcastJob.perform_now(
