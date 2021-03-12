@@ -9,10 +9,12 @@
 
 .icon-img-upload {
   display: inline-block;
-  color: #face66;
-  font-size: 60px;
+  color: purple;
+  font-size: 65px;
   padding: 10px;
   margin-bottom: 20px;
+  position: relative;
+  top: 90px;
   z-index: -1;
   &:hover {
     cursor: pointer;
