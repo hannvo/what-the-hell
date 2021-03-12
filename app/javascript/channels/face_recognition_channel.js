@@ -9,7 +9,6 @@ const initFaceRecognitionCable = () => {
       { channel: "FaceRecognitionChannel", client: id },
       {
         received(data) {
-          console.log(data);
           document.body.innerHTML = data.response;
           initBiographyExpand();
         },
