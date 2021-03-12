@@ -31,6 +31,7 @@ import { initSlider } from "../plugins/swipe_slider";
 import { initBiographyExpand } from "../plugins/biography_expand";
 import { initScrollFast } from "../plugins/scroll_fast";
 
+
 document.addEventListener("turbolinks:load", () => {
   // Call your functions here, e.g:
   // initSelect2();
@@ -42,4 +43,5 @@ document.addEventListener("turbolinks:load", () => {
   // initSlider();
   initBiographyExpand();
   initScrollFast();
+
 });
