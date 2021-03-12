@@ -20,23 +20,25 @@ const fetchMovies = (query) => {
 };
 
 const movieImage = (movie) => {
-  let img_url = ""
+  let img_url = "";
   if (movie.poster_path) {
     img_url = `https://image.tmdb.org/t/p/w500${movie.poster_path}`;
   } else {
     img_url = `https://dummyimage.com/40x60/000/fff.jpg&text=${movie.original_title}`;
   }
-  return img_url
-}
+  return img_url;
+};
 
 const insertMovies = (data) => {
   const movieSuggestions = document.getElementById("movie-suggestions");
   movieSuggestions.innerHTML = "";
   const firstFour = data.results.slice(0, 4);
   firstFour.forEach((movie) => {
-    const img_url = movieImage(movie)
+    const img_url = movieImage(movie);
 
-    const movieCard = `<div class="film-option" movie-id="${movie.id}" movie-title="${movie.original_title}">
+    const movieCard = `<div class="film-option" movie-id="${
+      movie.id
+    }" movie-title="${movie.original_title}">
                           <img src="${img_url}" alt="">
                           <p>${
                             movie.original_title
@@ -53,10 +55,19 @@ const insertMovies = (data) => {
 const initAutocomplete = () => {
   const movieInput = document.getElementById("movie-input");
   const movieSuggestions = document.getElementById("movie-suggestions");
-
-  // added check for the presence of the element to suppress
-  // errors on views without the movie input
+  const mainTitle = document.getElementsByClassName("main-title")[0];
+  // added check for the presence of the element to suppress errors on views without the movie input
   if (movieInput) {
+    if (mainTitle) {
+      movieInput.addEventListener("focus", (event) => {
+        mainTitle.style.display = "none";
+      });
+      movieInput.addEventListener("blur", (event) => {
+        if (movieSuggestions.innerText == "") {
+          mainTitle.style.display = "block";
+        }
+      });
+    }
     movieInput.addEventListener("keyup", (event) => {
       movieSuggestions.innerHTML = "";
       if (movieInput.value.length > 2) {
