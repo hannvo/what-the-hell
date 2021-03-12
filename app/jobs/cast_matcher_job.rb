@@ -15,7 +15,11 @@ class CastMatcherJob < ApplicationJob
                .each { |actor| broadcast(actor) }
     else
       # if there is only 1 movie input or no matching actors display preresults page
-      broadcast_subtitle({ common_actors: 'single-movie' }, common_actors: (@query.one? ? true : 'single-movie'))
+      if @query.one?
+        broadcast_subtitle({ common_actors: 'single-movie' }, common_actors: 'single-movie')
+      else
+        broadcast_subtitle({ common_actors: true }, common_actors: false)
+      end
       Tmdb.get_actors(query.last.to_i).each { |actor| broadcast(actor) }
     end
   end

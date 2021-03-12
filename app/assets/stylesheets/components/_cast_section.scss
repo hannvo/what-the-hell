@@ -1,9 +1,26 @@
 #cast-subtitle-section {
-  padding: 16px;
-  margin: 0 auto;
-  color: $gray !important;
+  text-align: center;
+  h2 {
+    text-shadow: 2px 3px 4px $purple;
+    color: $light-gray;
+    opacity: 0.9;
+    margin: 0 auto;
+    padding: 8px 0;
+    font-size: 24px;
+    font-weight: 400;
+  }
+
+  .subheading {
+    text-align: left;
+     h2 {
+      margin: 0;
+      text-shadow: 2px 3px 4px rgba(245, 103, 42, 0.8);
+      opacity: 1;
+    }
+  }
 }
 
 #cast-section {
   text-align: center;
 }
+
