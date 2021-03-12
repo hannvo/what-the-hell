@@ -5,7 +5,7 @@
     color: $light-gray;
     opacity: 0.9;
     margin: 0 auto;
-    padding: 16px 0;
+    padding: 8px 0;
     font-size: 24px;
     font-weight: 400;
   }
@@ -14,7 +14,8 @@
     text-align: left;
      h2 {
       margin: 0;
-      text-shadow: 2px 3px 4px $yellow;
+      text-shadow: 2px 3px 4px rgba(245, 103, 42, 0.6);
+      opacity: 1;
     }
   }
 }
